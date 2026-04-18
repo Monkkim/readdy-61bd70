@@ -123,8 +123,8 @@ export default function Comparison() {
             <span className="text-gray-400">— 다른 선택지와의 차이</span>
           </h2>
           <p className="text-gray-500 text-base leading-relaxed font-light">
-            AI 응대 솔루션은 많습니다.
-            당신이 비교해야 할 건 <span className="text-gray-900 font-medium">'기능'이 아니라 '파트너십 구조'</span>입니다.
+            AI 응대 솔루션은 많습니다
+            당신이 비교해야 할 건 <span className="text-gray-900 font-medium">'기능'이 아니라 '파트너십 구조'</span>입니다
           </p>
         </div>
 
@@ -181,7 +181,7 @@ export default function Comparison() {
                 <li>· 한 번 만들어달라는 1회성 외주 → <span className="text-gray-900">프리랜서가 맞습니다</span></li>
               </ul>
               <p className="text-gray-700 text-sm font-medium leading-relaxed">
-                우리는 <span className="text-black">'응답 구조를 비즈니스 문맥에 맞게 설계하고, 도입 후에도 함께 가는 파트너'</span>가 필요한 팀을 위한 선택지입니다.
+                우리는 <span className="text-black">'응답 구조를 비즈니스 문맥에 맞게 설계하고, 도입 후에도 함께 가는 파트너'</span>가 필요한 팀을 위한 선택지입니다
               </p>
             </div>
           </div>

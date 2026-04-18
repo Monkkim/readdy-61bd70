@@ -6,7 +6,7 @@ const services = [
     number: '01',
     title: 'AI Sales System',
     subtitle: '리드 즉시 응대 + 맞춤 제안',
-    description: '문의가 들어오는 순간, AI가 고객의 의도를 파악하고 1:1 맞춤형 제안을 자동 생성합니다. 사람이 확인하기도 전에 리드는 이미 응대를 받고 있습니다.',
+    description: '문의가 들어오는 순간, AI가 고객의 의도를 파악하고 1:1 맞춤형 제안을 자동 생성합니다 사람이 확인하기도 전에 리드는 이미 응대를 받고 있습니다',
     tags: ['Lead Response', 'Personalization', 'Conversion']
   },
   {
@@ -14,7 +14,7 @@ const services = [
     number: '02',
     title: 'Voice Agent',
     subtitle: '전화 응대 0초 대기',
-    description: '고객이 전화하면 AI가 즉시 받습니다. 자연스러운 음성으로 상담, 예약, 안내까지 처리. 영업시간 외에도 단 한 통의 전화도 놓치지 않습니다.',
+    description: '고객이 전화하면 AI가 즉시 받습니다 자연스러운 음성으로 상담, 예약, 안내까지 처리 영업시간 외에도 단 한 통의 전화도 놓치지 않습니다',
     tags: ['Voice AI', 'Conversational', '24/7']
   },
   {
@@ -22,17 +22,9 @@ const services = [
     number: '03',
     title: 'Chat & CRM',
     subtitle: '채팅 응대 + 자동 파이프라인',
-    description: '웹, 카카오, 메신저 어디서든 AI가 실시간 응대합니다. 유입된 리드는 자동 분류되고, 최적의 타이밍에 후속 조치가 실행되어 전환까지 이어집니다.',
+    description: '웹, 카카오, 메신저 어디서든 AI가 실시간 응대합니다 유입된 리드는 자동 분류되고, 최적의 타이밍에 후속 조치가 실행되어 전환까지 이어집니다',
     tags: ['Omnichannel', 'CRM', 'Automation']
   },
-  {
-    icon: 'ri-links-line',
-    number: '04',
-    title: 'API 연동 및 시스템 통합',
-    subtitle: '기존 시스템과 AI 연결',
-    description: '기존 시스템과 AI를 매끄럽게 연결합니다. CRM, ERP, 메신저, 외부 API 등 다양한 플랫폼과의 통합으로 AI가 실제 업무에 녹아드는 환경을 만듭니다.',
-    tags: ['API', 'Integration', 'n8n']
-  }
 ];
 
 function ServiceCard({ service, index }: { service: typeof services[0]; index: number }) {
@@ -67,7 +59,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
     <div
       ref={ref}
       className={`p-10 md:p-12 cursor-pointer transition-all duration-400 group ${
-        hovered ? 'bg-black' : 'bg-white'
+        hovered ? 'bg-black shadow-[inset_0_0_40px_rgba(0,0,0,0.6),0_8px_32px_rgba(0,0,0,0.18)]' : 'bg-white shadow-[inset_0_0_0_1px_rgba(0,0,0,0.06),0_4px_24px_rgba(0,0,0,0.07)]'
       }`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -144,12 +136,10 @@ export default function Services() {
               Services
             </h2>
           </div>
-          <p className="text-gray-500 max-w-sm leading-relaxed text-sm font-light">
-            1분 안에 응답하는 구조를 만드는 AI 시스템. 각 프로젝트는 충분한 이해와 설계를 바탕으로 시작됩니다.
-          </p>
+
         </div>
 
-        <div className="grid md:grid-cols-2 gap-px bg-gray-100">
+        <div className="grid md:grid-cols-3 gap-6">
           {services.map((service, index) => (
             <ServiceCard key={index} service={service} index={index} />
           ))}

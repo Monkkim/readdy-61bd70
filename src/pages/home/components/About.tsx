@@ -1,11 +1,11 @@
 import { useRef, useEffect } from 'react';
 
 const activities = [
-  { icon: 'ri-youtube-line', text: '유튜브 / 쓰레드 투쏠 운영중' },
+  { icon: 'ri-youtube-line', text: '유튜브 / 인스타 / 쓰레드 투쏠 운영중' },
   { icon: 'ri-customer-service-2-line', text: '현 채널톡 Experts 활동' },
   { icon: 'ri-stack-line', text: '누적 자동화 프로젝트 10+' },
   { icon: 'ri-graduation-cap-line', text: '패스트캠퍼스 n8n x Antigravity 강의 런칭' },
-  { icon: 'ri-group-line', text: 'AI Business Club 커뮤니티 운영' },
+  { icon: 'ri-group-line', text: 'AI Business Club 커뮤니티 운영 (2000+)' },
 ];
 
 const stats = [
@@ -64,13 +64,15 @@ export default function About() {
             </h2>
             <div className="space-y-5 text-white/60 text-sm leading-relaxed font-light mb-10">
               <p>
-                안녕하세요 여러분 <strong className="text-white font-semibold">투쏠</strong>입니다.
+                안녕하세요 여러분 <strong className="text-white font-semibold">투쏠</strong>입니다
               </p>
               <p>
-                저는 AI가 본격적으로 세상을 뒤흔들기 시작한 이후, 이 미지의 도구가 우리의 일과 삶을 어떻게 혁신적으로 바꿀 수 있는지 그 실전적인 해답을 찾아가고 있습니다.
+                저는 AI가 본격적으로 세상을 뒤흔들기 시작한 이후, 
+이 미지의 도구가 우리의 일과 삶을 어떻게 혁신적으로 바꿀 수 있는지 그 실전적인 해답을 찾아가고 있습니다
               </p>
               <p>
-                현재 SNS를 통해 막연한 이론에 그치지 않고, 당장의 업무와 일상을 AI와 함께 설계해 나가는 구체적인 방법들을 공유하고 있습니다.
+                현재 SNS를 통해 막연한 이론에 그치지 않고
+당장의 업무와 일상을 AI와 함께 설계해 나가는 구체적인 방법들을 공유하고 있습니다
               </p>
               <p className="text-white font-medium">저와 함께 가보시죠!</p>
             </div>
@@ -92,17 +94,19 @@ export default function About() {
             <div className="flex flex-wrap gap-3">
               <a
                 href="#contact"
-                className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 text-xs tracking-widest uppercase font-semibold hover:bg-gray-100 transition-all cursor-pointer whitespace-nowrap group"
+                className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 text-xs tracking-widest uppercase font-semibold hover:bg-amber-400 transition-all cursor-pointer whitespace-nowrap group rounded-full"
               >
                 <span>상담 신청</span>
                 <i className="ri-arrow-right-line text-base group-hover:translate-x-1 transition-transform"></i>
               </a>
               <a
-                href="mailto:michael@davenport.ai.kr"
-                className="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 text-xs tracking-widest uppercase font-medium hover:bg-white hover:text-black transition-all cursor-pointer whitespace-nowrap"
+                href="https://www.youtube.com/@ai_tusol"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-[#FF0000] text-white px-8 py-4 text-xs tracking-widest uppercase font-medium hover:bg-[#cc0000] transition-all cursor-pointer whitespace-nowrap rounded-full"
               >
-                <i className="ri-mail-line"></i>
-                <span>Email</span>
+                <i className="ri-youtube-fill text-base"></i>
+                <span>YouTube</span>
               </a>
             </div>
           </div>
@@ -115,21 +119,11 @@ export default function About() {
                 className="w-full h-full object-cover object-top"
               />
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-white text-black p-6 w-44">
-              <div className="text-3xl font-bold">AI</div>
-              <div className="text-xs tracking-widest uppercase text-gray-500 mt-1">Director</div>
-            </div>
+
           </div>
         </div>
 
-        <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/10 mt-28">
-          {stats.map((stat, i) => (
-            <div key={i} className="bg-black p-8 md:p-10 text-center">
-              <div className="text-3xl md:text-4xl font-bold text-white mb-2">{stat.value}</div>
-              <div className="text-xs tracking-widest uppercase text-white/30 font-light">{stat.label}</div>
-            </div>
-          ))}
-        </div>
+
       </div>
     </section>
   );

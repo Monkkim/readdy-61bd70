@@ -20,13 +20,28 @@ export default function Navbar() {
       }`}
     >
       <div className="px-8 md:px-16 py-5 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3 cursor-pointer">
-          <span className={`text-xl font-bold tracking-widest uppercase transition-colors duration-300 ${isScrolled ? 'text-black' : 'text-white'}`}>
-            투쏠
-          </span>
-          <span className={`text-xs tracking-[0.3em] uppercase font-light transition-colors duration-300 ${isScrolled ? 'text-gray-400' : 'text-white/60'}`}>
-            AI Director
-          </span>
+        <Link to="/" className="flex items-center gap-2.5 cursor-pointer group">
+          {/* 로고 아이콘 */}
+          <div className="relative w-8 h-8 flex items-center justify-center">
+            {/* 외곽 원 */}
+            <div className={`absolute inset-0 rounded-full border transition-colors duration-500 ${isScrolled ? 'border-black/30' : 'border-white/30'}`}></div>
+            {/* 내부 D 이니셜 + 파형 */}
+            <div className={`relative z-10 flex items-center justify-center w-full h-full transition-colors duration-500`}>
+              <span className={`text-sm font-bold tracking-tight transition-colors duration-500 ${isScrolled ? 'text-black' : 'text-white'}`}>D</span>
+              {/* 파형 점 3개 */}
+              <div className="absolute bottom-1 right-1 flex gap-[2px] items-end">
+                <span className={`block w-[2px] h-[4px] rounded-full transition-colors duration-500 ${isScrolled ? 'bg-black/50' : 'bg-white/50'}`}></span>
+                <span className={`block w-[2px] h-[6px] rounded-full transition-colors duration-500 ${isScrolled ? 'bg-black/70' : 'bg-white/70'}`}></span>
+                <span className={`block w-[2px] h-[3px] rounded-full transition-colors duration-500 ${isScrolled ? 'bg-black/40' : 'bg-white/40'}`}></span>
+              </div>
+            </div>
+          </div>
+          {/* 텍스트 */}
+          <div className="flex flex-col leading-none">
+            <span className={`text-sm font-bold tracking-[0.15em] uppercase transition-colors duration-500 ${isScrolled ? 'text-black' : 'text-white'}`}>
+              Davenport
+            </span>
+          </div>
         </Link>
 
         <div className="hidden md:flex items-center gap-10">
@@ -56,11 +71,7 @@ export default function Navbar() {
           </a>
           <a
             href="#contact"
-            className={`text-xs tracking-widest uppercase font-medium px-6 py-2.5 border transition-all duration-300 whitespace-nowrap cursor-pointer ${
-              isScrolled
-                ? 'border-black text-black hover:bg-black hover:text-white'
-                : 'border-white text-white hover:bg-white hover:text-black'
-            }`}
+            className="text-xs tracking-widest uppercase font-medium px-6 py-2.5 border border-white bg-white text-black hover:bg-gray-100 transition-all duration-300 whitespace-nowrap cursor-pointer rounded-full"
           >
             30분 진단 예약
           </a>
