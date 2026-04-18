@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -12,6 +14,21 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+    setMobileOpen(false);
+    if (location.pathname === '/') {
+      const el = document.querySelector(hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate('/');
+      setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 400);
+    }
+  };
 
   return (
     <nav
@@ -46,31 +63,26 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-10">
           {[
-            { label: 'Services', to: '/services' },
-            { label: 'About', to: '/about' },
-            { label: 'Work', to: '/testimonials' },
-            { label: 'Insights', to: '/insights' },
+            { label: 'Services', hash: '#services' },
+            { label: 'About', hash: '#about' },
+            { label: 'Work', hash: '#testimonials' },
+            { label: 'Insights', hash: '#faq' },
+            { label: 'FAQ', hash: '#faq' },
           ].map((item) => (
-            <Link
+            <a
               key={item.label}
-              to={item.to}
-              className={`text-xs tracking-widest uppercase font-medium transition-colors duration-300 whitespace-nowrap ${
+              href={item.hash}
+              onClick={(e) => handleAnchorClick(e, item.hash)}
+              className={`text-xs tracking-widest uppercase font-medium transition-colors duration-300 whitespace-nowrap cursor-pointer ${
                 isScrolled ? 'text-gray-700 hover:text-black' : 'text-white/80 hover:text-white'
               }`}
             >
               {item.label}
-            </Link>
+            </a>
           ))}
           <a
-            href="#faq"
-            className={`text-xs tracking-widest uppercase font-medium transition-colors duration-300 whitespace-nowrap cursor-pointer ${
-              isScrolled ? 'text-gray-700 hover:text-black' : 'text-white/80 hover:text-white'
-            }`}
-          >
-            FAQ
-          </a>
-          <a
             href="#contact"
+            onClick={(e) => handleAnchorClick(e, '#contact')}
             className="text-xs tracking-widest uppercase font-medium px-6 py-2.5 border border-white bg-white text-black hover:bg-gray-100 transition-all duration-300 whitespace-nowrap cursor-pointer rounded-full"
           >
             30분 진단 예약
@@ -91,30 +103,24 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 px-8 py-6 flex flex-col gap-6">
           {[
-            { label: 'Services', to: '/services' },
-            { label: 'About', to: '/about' },
-            { label: 'Work', to: '/testimonials' },
-            { label: 'Insights', to: '/insights' },
+            { label: 'Services', hash: '#services' },
+            { label: 'About', hash: '#about' },
+            { label: 'Work', hash: '#testimonials' },
+            { label: 'Insights', hash: '#faq' },
+            { label: 'FAQ', hash: '#faq' },
           ].map((item) => (
-            <Link
+            <a
               key={item.label}
-              to={item.to}
-              onClick={() => setMobileOpen(false)}
-              className="text-xs tracking-widest uppercase font-medium text-gray-700 hover:text-black transition-colors whitespace-nowrap"
+              href={item.hash}
+              onClick={(e) => handleAnchorClick(e, item.hash)}
+              className="text-xs tracking-widest uppercase font-medium text-gray-700 hover:text-black transition-colors whitespace-nowrap cursor-pointer"
             >
               {item.label}
-            </Link>
+            </a>
           ))}
           <a
-            href="#faq"
-            onClick={() => setMobileOpen(false)}
-            className="text-xs tracking-widest uppercase font-medium text-gray-700 hover:text-black transition-colors whitespace-nowrap cursor-pointer"
-          >
-            FAQ
-          </a>
-          <a
             href="#contact"
-            onClick={() => setMobileOpen(false)}
+            onClick={(e) => handleAnchorClick(e, '#contact')}
             className="text-xs tracking-widest uppercase font-medium px-6 py-2.5 border border-black text-black hover:bg-black hover:text-white transition-all text-center cursor-pointer whitespace-nowrap"
           >
             30분 진단 예약
