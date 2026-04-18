@@ -146,19 +146,19 @@ export default function ContactCTA() {
   };
 
   return (
-    <section id="contact" className="py-32 px-8 md:px-16 bg-black text-white">
+    <section id="contact" className="py-16 md:py-32 px-4 md:px-16 bg-black text-white">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-start">
 
           {/* Left */}
-          <div ref={leftRef}>
+          <div ref={leftRef} className="text-center md:text-left">
             <p className="text-xs tracking-[0.4em] uppercase text-white/30 mb-6 font-light">
               Contact
             </p>
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight mb-8 whitespace-nowrap">
               지금 바로 함께하세요!
             </h2>
-            <p className="text-white/50 text-sm leading-relaxed mb-10 font-light max-w-sm">
+            <p className="text-white/50 text-sm leading-relaxed mb-10 font-light max-w-sm mx-auto md:mx-0">
               30분 무료 진단으로 현재 리드 구조를 점검하고<br />
               맞춤 AI 자동화 방향을 제안해드립니다
             </p>
@@ -169,7 +169,7 @@ export default function ContactCTA() {
                 { icon: 'ri-file-list-3-line', text: 'PainPoint 전반을 검사하는 프로세스 검사' },
                 { icon: 'ri-shield-check-line', text: '개선을 위한 1차 솔루션 도출' },
               ].map((item) => (
-                <li key={item.text} className="flex items-center gap-4 text-white/70 text-sm font-light">
+                <li key={item.text} className="flex items-center justify-center md:justify-start gap-4 text-white/70 text-sm font-light">
                   <div className="w-9 h-9 flex items-center justify-center border border-white/10 shrink-0">
                     <i className={`${item.icon} text-base text-white/50`}></i>
                   </div>
@@ -181,7 +181,7 @@ export default function ContactCTA() {
             <div className="space-y-3 pt-8 border-t border-white/10">
               <a
                 href="mailto:michael@davenport.ai.kr"
-                className="flex items-center gap-4 text-white/50 hover:text-white transition-colors group cursor-pointer"
+                className="flex items-center justify-center md:justify-start gap-4 text-white/50 hover:text-white transition-colors group cursor-pointer"
               >
                 <div className="w-9 h-9 flex items-center justify-center border border-white/10 group-hover:border-white/40 transition-colors">
                   <i className="ri-mail-line text-base"></i>
@@ -298,7 +298,7 @@ export default function ContactCTA() {
                   disabled={status === 'sending' || charCount > 500}
                   className="w-full bg-white text-black py-4 text-xs tracking-widest uppercase font-semibold hover:bg-amber-400 transition-all duration-300 cursor-pointer disabled:opacity-50 whitespace-nowrap group flex items-center justify-center gap-3"
                 >
-                  <span>{status === 'sending' ? 'Sending...' : '진단 요청 보내기 · 24시간 내 답변'}</span>
+                  <span>{status === 'sending' ? 'Sending...' : '30분 무료 상담 신청하기'}</span>
                   {status !== 'sending' && <i className="ri-arrow-right-line text-base group-hover:translate-x-1 transition-transform"></i>}
                 </button>
               </form>

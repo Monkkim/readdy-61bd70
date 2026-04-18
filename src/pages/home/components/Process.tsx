@@ -5,7 +5,7 @@ const steps = [
     number: '01',
     title: '진단 제출',
     subtitle: 'Diagnosis',
-    description: '현재 응대 구조와 비즈니스 흐름을 파악하기 위한 간단한 진단서를 제출합니다',
+    description: '현재 응대 구조와 비즈니스\n흐름을 파악하기 위한 간단한 진단서를 제출합니다',
     icon: 'ri-file-list-3-line',
     detail: '약 5분 소요',
   },
@@ -13,7 +13,7 @@ const steps = [
     number: '02',
     title: '인터뷰',
     subtitle: 'Interview',
-    description: '30분 심층 인터뷰를 통해 핵심 병목 지점과 자동화 가능 영역을 함께 찾아냅니다',
+    description: '30분 심층 인터뷰를 통해\n핵심 병목 지점과 자동화 가능 영역을 함께 찾아냅니다',
     icon: 'ri-discuss-line',
     detail: '30분 화상 미팅',
   },
@@ -21,7 +21,7 @@ const steps = [
     number: '03',
     title: '구축 및 설계',
     subtitle: 'Build & Design',
-    description: '비즈니스 맥락에 맞는 AI 응대 시스템을 설계하고 실제 환경에 구축합니다',
+    description: '비즈니스 맥락에 맞는\nAI 응대 시스템을 설계하고 실제 환경에 구축합니다',
     icon: 'ri-settings-4-line',
     detail: '2~4주 소요',
   },
@@ -29,7 +29,7 @@ const steps = [
     number: '04',
     title: '전달',
     subtitle: 'Delivery',
-    description: '완성된 시스템을 인계하고 운영 가이드와 함께 자립 가능한 구조로 전달합니다',
+    description: '완성된 시스템을 인계하고\n운영 가이드와 함께 자립 가능한 구조로 전달합니다',
     icon: 'ri-send-plane-line',
     detail: '전달 및 교육',
   },
@@ -87,20 +87,20 @@ export default function Process() {
   }, []);
 
   return (
-    <section id="process" className="py-32 px-8 md:px-16 bg-black overflow-hidden">
+    <section id="process" className="py-16 md:py-32 px-4 md:px-16 bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
-        <div ref={headerRef} className="max-w-2xl mb-20">
-          <p className="text-xs tracking-[0.4em] uppercase text-white/30 mb-5 font-light">
+        <div ref={headerRef} className="max-w-2xl mb-10 md:mb-20 text-center md:text-left mx-auto md:mx-0">
+          <p className="text-xs tracking-[0.4em] uppercase text-white/30 mb-3 md:mb-5 font-light">
             How It Works
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-5">
+          <h2 className="text-2xl md:text-5xl font-bold text-white leading-tight mb-3 md:mb-5">
             진행 방식
             <br />
             <span className="text-white/30">4단계로 완성됩니다</span>
           </h2>
-          <p className="text-sm text-white/40 font-light leading-relaxed">
+          <p className="text-xs md:text-sm text-white/40 font-light leading-relaxed">
             복잡한 절차 없이, 명확한 단계로 진행됩니다
           </p>
         </div>
@@ -128,18 +128,18 @@ export default function Process() {
               >
                 {/* 모바일 연결선 */}
                 {i < steps.length - 1 && (
-                  <div className="lg:hidden absolute left-[2.6rem] top-[6.5rem] w-px h-12 bg-white/10" />
+                  <div className="lg:hidden absolute left-[2rem] top-[5rem] w-px h-8 bg-white/10" />
                 )}
 
-                <div className="p-8 lg:p-10 border border-white/0 hover:border-white/10 transition-all duration-500 rounded-sm">
+                <div className="p-4 md:p-8 lg:p-10 border border-white/0 hover:border-white/10 transition-all duration-500 rounded-sm text-center md:text-left">
                   {/* 번호 + 아이콘 */}
-                  <div className="flex items-center gap-4 mb-8">
+                  <div className="flex items-center gap-3 mb-4 md:mb-8 justify-center md:justify-start">
                     <div className="relative">
-                      <div className="w-[3.25rem] h-[3.25rem] flex items-center justify-center border border-white/20 group-hover:border-amber-400/50 transition-colors duration-500 rounded-full bg-white/5">
-                        <i className={`${step.icon} text-xl text-white/60 group-hover:text-amber-400 transition-colors duration-500`}></i>
+                      <div className="w-10 h-10 md:w-[3.25rem] md:h-[3.25rem] flex items-center justify-center border border-white/20 group-hover:border-amber-400/50 transition-colors duration-500 rounded-full bg-white/5">
+                        <i className={`${step.icon} text-base md:text-xl text-white/60 group-hover:text-amber-400 transition-colors duration-500`}></i>
                       </div>
                       {/* 번호 뱃지 */}
-                      <span className="absolute -top-1.5 -right-1.5 w-5 h-5 flex items-center justify-center bg-black border border-white/20 rounded-full text-[9px] font-bold text-white/40 group-hover:text-amber-400 group-hover:border-amber-400/40 transition-colors duration-500">
+                      <span className="absolute -top-1 -right-1 w-4 h-4 md:w-5 md:h-5 flex items-center justify-center bg-black border border-white/20 rounded-full text-[8px] md:text-[9px] font-bold text-white/40 group-hover:text-amber-400 group-hover:border-amber-400/40 transition-colors duration-500">
                         {i + 1}
                       </span>
                     </div>
@@ -154,18 +154,18 @@ export default function Process() {
 
                   {/* 텍스트 */}
                   <div>
-                    <p className="text-[10px] tracking-[0.3em] uppercase text-white/25 mb-2 font-light">
+                    <p className="text-[9px] md:text-[10px] tracking-[0.3em] uppercase text-white/25 mb-1 md:mb-2 font-light">
                       {step.subtitle}
                     </p>
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors duration-500">
+                    <h3 className="text-base md:text-xl font-bold text-white mb-2 md:mb-3 group-hover:text-amber-400 transition-colors duration-500">
                       {step.title}
                     </h3>
-                    <p className="text-sm text-white/40 leading-relaxed font-light mb-5">
+                    <p className="text-xs md:text-sm text-white/40 leading-relaxed font-light mb-3 md:mb-5 whitespace-pre-line">
                       {step.description}
                     </p>
-                    <div className="inline-flex items-center gap-2 border border-white/10 px-3 py-1.5 rounded-full">
-                      <i className="ri-time-line text-[11px] text-white/30"></i>
-                      <span className="text-[11px] text-white/30 font-light tracking-wide">{step.detail}</span>
+                    <div className="inline-flex items-center gap-1.5 border border-white/10 px-2.5 py-1 md:px-3 md:py-1.5 rounded-full mx-auto md:mx-0">
+                      <i className="ri-time-line text-[10px] md:text-[11px] text-white/30"></i>
+                      <span className="text-[10px] md:text-[11px] text-white/30 font-light tracking-wide">{step.detail}</span>
                     </div>
                   </div>
                 </div>
@@ -175,7 +175,7 @@ export default function Process() {
         </div>
 
         {/* CTA */}
-        <div className="mt-16 pt-16 border-t border-white/10 flex justify-center">
+        <div className="mt-8 md:mt-16 pt-8 md:pt-16 border-t border-white/10 flex justify-center">
           <a
             href="#contact"
             className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 text-xs tracking-widest uppercase font-semibold hover:bg-amber-400 transition-all duration-300 cursor-pointer whitespace-nowrap group rounded-full"

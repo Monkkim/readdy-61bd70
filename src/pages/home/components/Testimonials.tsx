@@ -43,16 +43,16 @@ const allTestimonials = [...testimonials, ...testimonials];
 
 function TestimonialCard({ t }: { t: typeof testimonials[0] }) {
   return (
-    <div className="w-[320px] md:w-[380px] bg-white border border-gray-100 p-8 flex flex-col gap-5 shrink-0 hover:border-gray-300 transition-all duration-300 group">
-      <span className="text-xs tracking-widest uppercase border border-gray-200 text-gray-400 px-3 py-1 self-start font-light">
+    <div className="w-[220px] md:w-[320px] bg-white border border-gray-100 p-4 md:p-6 flex flex-col gap-3 shrink-0 hover:border-gray-300 transition-all duration-300 group">
+      <span className="text-[9px] md:text-xs tracking-widest uppercase border border-gray-200 text-gray-400 px-2 py-0.5 self-start font-light">
         {t.tag}
       </span>
-      <p className="text-gray-700 text-sm leading-relaxed flex-grow font-light line-clamp-5">
+      <p className="text-gray-700 text-xs md:text-sm leading-relaxed flex-grow font-light line-clamp-4">
         &ldquo;{t.text}&rdquo;
       </p>
-      <div className="pt-5 border-t border-gray-100">
-        <div className="font-semibold text-black text-sm">{t.name}</div>
-        <div className="text-xs text-gray-400 mt-1 font-light">{t.role}</div>
+      <div className="pt-3 border-t border-gray-100">
+        <div className="font-semibold text-black text-xs md:text-sm">{t.name}</div>
+        <div className="text-[10px] md:text-xs text-gray-400 mt-0.5 font-light">{t.role}</div>
       </div>
     </div>
   );
@@ -62,35 +62,43 @@ export default function Testimonials() {
   const titleRef = useRef<HTMLDivElement>(null);
   const track1Ref = useRef<HTMLDivElement>(null);
   const track2Ref = useRef<HTMLDivElement>(null);
+  const track1WrapRef = useRef<HTMLDivElement>(null);
+  const track2WrapRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = titleRef.current;
-    if (!el) return;
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              el.style.transition = 'opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1)';
-              el.style.opacity = '1';
-              el.style.transform = 'translateY(0)';
-            }, 50);
-            observer.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
+    const items = [
+      { el: titleRef.current, delay: 0 },
+      { el: track1WrapRef.current, delay: 150 },
+      { el: track2WrapRef.current, delay: 280 },
+    ];
+    items.forEach(({ el, delay }) => {
+      if (!el) return;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(30px)';
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setTimeout(() => {
+                el.style.transition = `opacity 0.8s cubic-bezier(0.16,1,0.3,1) ${delay}ms, transform 0.8s cubic-bezier(0.16,1,0.3,1) ${delay}ms`;
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+              }, 50);
+              observer.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(el);
+      return () => observer.disconnect();
+    });
   }, []);
 
   return (
-    <section id="testimonials" className="py-32 bg-gray-50 overflow-hidden">
+    <section id="testimonials" className="py-16 md:py-32 bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-8 md:px-16">
-        <div ref={titleRef} className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+        <div ref={titleRef} className="mb-10 md:mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
           <div>
             <p className="text-xs tracking-[0.4em] uppercase text-gray-400 mb-4 font-light">
               Client Reviews
@@ -106,7 +114,7 @@ export default function Testimonials() {
       </div>
 
       {/* Marquee row 1 - left */}
-      <div className="relative w-full mb-6 group">
+      <div ref={track1WrapRef} className="relative w-full mb-6 group">
         <div className="absolute top-0 left-0 w-24 md:w-40 h-full bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
         <div className="absolute top-0 right-0 w-24 md:w-40 h-full bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
         <div
@@ -125,7 +133,7 @@ export default function Testimonials() {
       </div>
 
       {/* Marquee row 2 - right */}
-      <div className="relative w-full group">
+      <div ref={track2WrapRef} className="relative w-full group">
         <div className="absolute top-0 left-0 w-24 md:w-40 h-full bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
         <div className="absolute top-0 right-0 w-24 md:w-40 h-full bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
         <div

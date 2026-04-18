@@ -52,7 +52,7 @@ const rows: Row[] = [
   },
   {
     criterion: '도입 후 관계',
-    tusol: { icon: 'ri-handshake-line', label: '지속 파트너십', tone: 'good' },
+    tusol: { icon: 'ri-shake-hands-line', label: '지속 파트너십', tone: 'good' },
     chatbot: { icon: 'ri-close-line', label: '계약 뒤 단절', tone: 'bad' },
     si: { icon: 'ri-tools-line', label: '유지보수 계약', tone: 'meh' },
     freelancer: { icon: 'ri-close-line', label: '1회성', tone: 'bad' },
@@ -111,9 +111,9 @@ export default function Comparison() {
   }, []);
 
   return (
-    <section id="comparison" className="py-32 px-8 md:px-16 bg-white">
+    <section id="comparison" className="py-16 md:py-32 px-4 md:px-16 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div ref={headerRef} className="max-w-3xl mb-16">
+        <div ref={headerRef} className="max-w-3xl mb-16 text-center md:text-left mx-auto md:mx-0">
           <p className="text-xs tracking-[0.4em] uppercase text-gray-400 mb-6 font-light">
             Why Tusol
           </p>

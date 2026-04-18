@@ -52,16 +52,25 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" className="py-32 px-8 md:px-16 bg-black text-white">
+    <section id="about" className="py-16 md:py-32 px-4 md:px-16 bg-black text-white">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
-          <div ref={leftRef}>
+          <div ref={leftRef} className="text-center md:text-left">
             <p className="text-xs tracking-[0.4em] uppercase text-white/30 mb-6 font-light">
               About
             </p>
-            <h2 className="text-5xl md:text-6xl font-bold leading-tight mb-10">
-              투쏠
+            <h2 className="text-2xl md:text-6xl font-bold leading-tight mb-6 md:mb-10 whitespace-nowrap">
+              안녕하세요 투쏠입니다
             </h2>
+
+            {/* 모바일 전용 사진 */}
+            <div className="block md:hidden w-48 mx-auto mb-8 aspect-[4/5] overflow-hidden rounded-lg">
+              <img
+                src="https://ccqmnekxfekgszvryfjh.supabase.co/storage/v1/object/public/MY/picture.png"
+                alt="투쏠 AI Director"
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
             <div className="space-y-5 text-white/60 text-sm leading-relaxed font-light mb-10">
               <p>
                 안녕하세요 여러분 <strong className="text-white font-semibold">투쏠</strong>입니다
@@ -81,7 +90,7 @@ export default function About() {
               <h4 className="text-xs tracking-widest uppercase text-white/20 mb-5 font-light">주요 활동</h4>
               <ul className="space-y-3">
                 {activities.map((act, i) => (
-                  <li key={i} className="flex items-center gap-3 text-white/60 text-sm font-light">
+                  <li key={i} className="flex items-center justify-center md:justify-start gap-3 text-white/60 text-sm font-light">
                     <div className="w-5 h-5 flex items-center justify-center shrink-0">
                       <i className={`${act.icon} text-base text-white/30`}></i>
                     </div>
@@ -91,27 +100,27 @@ export default function About() {
               </ul>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-row gap-2 justify-center md:justify-start">
               <a
                 href="#contact"
-                className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 text-xs tracking-widest uppercase font-semibold hover:bg-amber-400 transition-all cursor-pointer whitespace-nowrap group rounded-full"
+                className="inline-flex items-center justify-center gap-2 bg-white text-black px-5 py-3 text-[10px] tracking-widest uppercase font-semibold hover:bg-amber-400 transition-all cursor-pointer whitespace-nowrap group rounded-full"
               >
                 <span>상담 신청</span>
-                <i className="ri-arrow-right-line text-base group-hover:translate-x-1 transition-transform"></i>
+                <i className="ri-arrow-right-line text-sm group-hover:translate-x-1 transition-transform"></i>
               </a>
               <a
                 href="https://www.youtube.com/@ai_tusol"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-[#FF0000] text-white px-8 py-4 text-xs tracking-widest uppercase font-medium hover:bg-[#cc0000] transition-all cursor-pointer whitespace-nowrap rounded-full"
+                className="inline-flex items-center justify-center gap-2 bg-[#FF0000] text-white px-5 py-3 text-[10px] tracking-widest uppercase font-medium hover:bg-[#cc0000] transition-all cursor-pointer whitespace-nowrap rounded-full"
               >
-                <i className="ri-youtube-fill text-base"></i>
+                <i className="ri-youtube-fill text-sm"></i>
                 <span>YouTube</span>
               </a>
             </div>
           </div>
 
-          <div ref={rightRef} className="relative">
+          <div ref={rightRef} className="relative hidden md:block">
             <div className="w-full aspect-[4/5] overflow-hidden">
               <img
                 src="https://ccqmnekxfekgszvryfjh.supabase.co/storage/v1/object/public/MY/picture.png"
@@ -119,7 +128,6 @@ export default function About() {
                 className="w-full h-full object-cover object-top"
               />
             </div>
-
           </div>
         </div>
 

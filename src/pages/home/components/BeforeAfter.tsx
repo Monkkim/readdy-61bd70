@@ -2,13 +2,13 @@ import { useRef, useEffect, useState } from 'react';
 
 const problemStats = [
   { value: '42시간', label: '평균 리드 응답 시간', sub: '업계 평균', color: 'text-red-400' },
-  { value: '~5%', label: '일반적인 리드 클로징률', sub: '업계 평균', color: 'text-red-400' },
+  { value: '~5%', label: '일반적인 계약 클로징률', sub: '업계 평균', color: 'text-red-400' },
   { value: '8×', label: '5분 후 전환 가능성 하락', sub: '기회 손실', color: 'text-red-400' },
 ];
 
 const resultStats = [
-  { value: '60초', label: '이내 응답 시 클로징률', sub: '목표 응답 속도', color: 'text-white' },
-  { value: '55%', label: '리드 클로징률 달성', sub: '60초 응답 기준', color: 'text-white' },
+  { value: '60초', label: '60초 이내 응답', sub: '목표 응답 속도', color: 'text-white' },
+  { value: '55%', label: '리드 계약률 달성', sub: '60초 응답 기준', color: 'text-white' },
   { value: '0%', label: '리드 누락률', sub: '24/7 자동화', color: 'text-white' },
 ];
 
@@ -86,18 +86,17 @@ export default function BeforeAfter() {
   }, []);
 
   return (
-    <section className="py-32 px-8 md:px-16 bg-black text-white overflow-hidden">
+    <section className="py-16 md:py-32 px-4 md:px-16 bg-black text-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
 
         {/* Title */}
-        <div ref={titleRef} className="text-center mb-24">
-          <h2 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
+        <div ref={titleRef} className="text-center mb-24 flex flex-col items-center">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
             지금 이 순간에도<br />
             <span className="text-white/50">기회가 사라지고 있습니다</span>
           </h2>
-          <p className="text-sm text-white/60 font-light max-w-xl mx-auto leading-relaxed">
-            60초 안에 응답한 기업의 클로징률은 <span className="text-white/90">55%</span><br />
-            업계 평균 응답 시간은 여전히 <span className="text-white/90">42시간</span>입니다
+          <p className="text-xs sm:text-sm text-white/60 font-light max-w-xl mx-auto leading-relaxed">
+            60초 안에 응답한 기업의 클로징률은 <span className="text-white/90">55%</span><br className="block sm:hidden" /> 업계 평균 응답 시간은 여전히 <span className="text-white/90">42시간</span>입니다
           </p>
         </div>
 
@@ -117,9 +116,8 @@ export default function BeforeAfter() {
             className="w-24 h-24 rounded-full object-cover object-top grayscale border border-white/20 mb-6"
           />
           <p className="text-xl md:text-2xl font-light text-white/90 leading-relaxed mb-5">
-            저는 직원 한 명에게 연 7천만 원을 줍니다<br />
-            <span className="text-white font-semibold">그리고 단 하나의 임무만 줍니다<br /><br />"60초 안에 전화하는 것"<br /></span><br />
-            그리고 리드의 55%를 클로징합니다
+            저는 직원 한 명에게<br className="block md:hidden" /> 연 7천만 원을 줍니다<br />
+            <span className="text-white font-semibold">그리고 단 하나의 임무만 줍니다<br /><br />"60초 안에 전화하는 것"</span>
           </p>
           <div className="flex items-center gap-3">
             <span className="text-xs text-white/50 uppercase tracking-widest font-light">Alex Hormozi</span>
@@ -135,7 +133,7 @@ export default function BeforeAfter() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Before stats */}
             <div
-              className="border border-red-500/20 bg-red-500/[0.04] p-8"
+              className="border border-red-500/20 bg-red-500/[0.04] p-5 md:p-8"
               style={{
                 opacity: visible ? 1 : 0,
                 transform: visible ? 'none' : 'translateX(-40px)',
@@ -146,7 +144,7 @@ export default function BeforeAfter() {
                 <div className="w-2 h-2 bg-red-400 rounded-full"></div>
                 <span className="text-xs font-semibold uppercase tracking-widest text-red-400">Before — 지금 당신의 현실</span>
               </div>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-3 gap-2 md:gap-4">
                 {problemStats.map((s, i) => (
                   <div
                     key={i}
@@ -157,9 +155,9 @@ export default function BeforeAfter() {
                       transition: `opacity 0.6s ease ${0.3 + i * 0.12}s, transform 0.6s ease ${0.3 + i * 0.12}s`,
                     }}
                   >
-                    <div className={`text-4xl md:text-5xl font-bold ${s.color} leading-none mb-2`}>{s.value}</div>
-                    <div className="text-[10px] text-white/50 uppercase tracking-widest mb-1">{s.sub}</div>
-                    <div className="text-xs text-white/60 font-light leading-snug">{s.label}</div>
+                    <div className={`text-xl sm:text-3xl md:text-5xl font-bold ${s.color} leading-none mb-2 whitespace-nowrap`}>{s.value}</div>
+                    <div className="text-[8px] sm:text-[10px] text-white/50 uppercase tracking-widest mb-1">{s.sub}</div>
+                    <div className="text-[10px] sm:text-xs text-white/60 font-light leading-snug">{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -183,7 +181,7 @@ export default function BeforeAfter() {
 
             {/* After stats */}
             <div
-              className="border border-white/20 bg-white/[0.04] p-8 relative overflow-hidden"
+              className="border border-white/20 bg-white/[0.04] p-5 md:p-8 relative overflow-hidden"
               style={{
                 opacity: visible ? 1 : 0,
                 transform: visible ? 'none' : 'translateX(40px)',
@@ -195,7 +193,7 @@ export default function BeforeAfter() {
                 <div className="w-2 h-2 bg-white rounded-full"></div>
                 <span className="text-xs font-semibold uppercase tracking-widest text-white/80">After — AI 도입 후</span>
               </div>
-              <div className="grid grid-cols-3 gap-4 relative z-10">
+              <div className="grid grid-cols-3 gap-2 md:gap-4 relative z-10">
                 {resultStats.map((s, i) => (
                   <div
                     key={i}
@@ -206,9 +204,9 @@ export default function BeforeAfter() {
                       transition: `opacity 0.6s ease ${0.4 + i * 0.12}s, transform 0.6s ease ${0.4 + i * 0.12}s`,
                     }}
                   >
-                    <div className={`text-4xl md:text-5xl font-bold ${s.color} leading-none mb-2`}>{s.value}</div>
-                    <div className="text-[10px] text-white/50 uppercase tracking-widest mb-1">{s.sub}</div>
-                    <div className="text-xs text-white/70 font-light leading-snug">{s.label}</div>
+                    <div className={`text-xl sm:text-3xl md:text-5xl font-bold ${s.color} leading-none mb-2 whitespace-nowrap`}>{s.value}</div>
+                    <div className="text-[8px] sm:text-[10px] text-white/50 uppercase tracking-widest mb-1">{s.sub}</div>
+                    <div className="text-[10px] sm:text-xs text-white/70 font-light leading-snug">{s.label}</div>
                   </div>
                 ))}
               </div>

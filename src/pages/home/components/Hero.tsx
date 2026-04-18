@@ -286,9 +286,9 @@ export default function Hero() {
         <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-white/[0.03] to-transparent"></div>
       </div>
 
-      <div className="relative z-10 w-full px-8 md:px-16 py-40">
-        <div className="max-w-5xl">
-          <h1 ref={headingRef} className="text-[2.75rem] md:text-[3.575rem] lg:text-[4.4rem] font-bold text-white leading-tight mb-6 tracking-tight">
+      <div className="relative z-10 w-full px-6 sm:px-8 md:px-16 py-28 sm:py-36 md:py-40">
+        <div className="max-w-5xl text-center md:text-left mx-auto md:mx-0">
+          <h1 ref={headingRef} className="text-[1.9rem] sm:text-[2.75rem] md:text-[3.575rem] lg:text-[4.4rem] font-bold text-white leading-tight mb-5 md:mb-6 tracking-tight">
             {typed1}
             {!done1 && (
               <span className="inline-block w-[3px] h-[0.85em] bg-white align-middle ml-1 animate-pulse rounded-sm" />
@@ -300,7 +300,6 @@ export default function Hero() {
                   {(() => {
                     const highlight = '55% 상승합니다';
                     const prefix = '계약 성공 확률이 ';
-                    const fullText = prefix + highlight;
                     if (typed2.length <= prefix.length) {
                       return (
                         <>
@@ -313,6 +312,7 @@ export default function Hero() {
                     return (
                       <>
                         <span className="text-white">{prefix}</span>
+                        <br className="block sm:hidden" />
                         <span className="text-amber-400">{highlightTyped}</span>
                         {!done2 && <span className="inline-block w-[3px] h-[0.85em] bg-amber-400 align-middle ml-1 animate-pulse rounded-sm" />}
                       </>
@@ -323,25 +323,27 @@ export default function Hero() {
             )}
           </h1>
 
-          <p ref={subRef} className="text-base md:text-lg text-white/50 mb-6 max-w-2xl leading-relaxed font-light">
+          <p ref={subRef} className="text-sm md:text-base lg:text-lg text-white/50 mb-6 max-w-2xl leading-relaxed font-light">
             업계 평균 응답 시간은 <span className="text-white/80 font-medium">42시간</span>{' '}
             60초 내 응답 시 클로징률 <span className="text-white/80 font-medium">55%</span> 업계 평균의 <span className="text-white/80 font-medium">11배</span>
-            <br />저희는 <span className="text-white/80 font-medium">즉각 응대</span>에서 시작해 <span className="text-white/80 font-medium">매출 전환</span>까지 이어지는 <span className="text-amber-400 font-medium">AI 시스템을 설계</span>합니다
+            <br className="hidden sm:block" />
+            <span className="sm:hidden"> </span>
+            저희는 <span className="text-white/80 font-medium">즉각 응대</span>에서 시작해 <span className="text-white/80 font-medium">매출 전환</span>까지 이어지는 <span className="text-amber-400 font-medium">AI 시스템을 설계</span>합니다
           </p>
 
-          <div ref={statsRef} className="flex flex-wrap gap-10 mb-14">
+          <div ref={statsRef} className="grid grid-cols-3 sm:flex sm:flex-wrap gap-6 sm:gap-10 mb-10 md:mb-14 justify-center md:justify-start">
             {stats.map((stat, i) => (
               <div key={i} className="flex flex-col gap-1">
-                <span className="text-3xl md:text-4xl font-bold text-white tracking-tight">{stat.value}</span>
-                <span className="text-xs text-white/30 font-light tracking-wider">{stat.label}</span>
+                <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">{stat.value}</span>
+                <span className="text-[10px] sm:text-xs text-white/30 font-light tracking-wider leading-snug">{stat.label}</span>
               </div>
             ))}
           </div>
 
-          <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 items-start">
+          <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 items-center md:items-start">
             <a
               href="#contact"
-              className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 text-xs tracking-widest uppercase font-semibold hover:bg-gray-100 transition-all cursor-pointer whitespace-nowrap group rounded-full"
+              className="inline-flex items-center gap-3 bg-white text-black px-6 sm:px-8 py-3.5 sm:py-4 text-xs tracking-widest uppercase font-semibold hover:bg-gray-100 transition-all cursor-pointer whitespace-nowrap group rounded-full"
             >
               <span>30분 진단 예약</span>
               <i className="ri-arrow-right-line text-base group-hover:translate-x-1 transition-transform"></i>
@@ -350,9 +352,8 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
-
-        <div className="w-px h-12 bg-gradient-to-b from-white/30 to-transparent animate-pulse"></div>
+      <div className="absolute bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+        <div className="w-px h-10 md:h-12 bg-gradient-to-b from-white/30 to-transparent animate-pulse"></div>
       </div>
     </section>
   );

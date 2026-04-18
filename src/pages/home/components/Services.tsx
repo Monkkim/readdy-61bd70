@@ -58,13 +58,13 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
   return (
     <div
       ref={ref}
-      className={`p-10 md:p-12 cursor-pointer transition-all duration-400 group ${
+      className={`p-10 md:p-12 cursor-pointer transition-all duration-400 group text-center md:text-left ${
         hovered ? 'bg-black shadow-[inset_0_0_40px_rgba(0,0,0,0.6),0_8px_32px_rgba(0,0,0,0.18)]' : 'bg-white shadow-[inset_0_0_0_1px_rgba(0,0,0,0.06),0_4px_24px_rgba(0,0,0,0.07)]'
       }`}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className="flex items-start justify-between mb-8">
+      <div className="flex items-start justify-center md:justify-between mb-8">
         <span className={`text-xs tracking-widest font-light transition-colors duration-300 ${hovered ? 'text-white/30' : 'text-gray-300'}`}>
           {service.number}
         </span>
@@ -81,7 +81,7 @@ function ServiceCard({ service, index }: { service: typeof services[0]; index: n
       <p className={`text-sm leading-relaxed mb-8 transition-colors duration-300 ${hovered ? 'text-white/60' : 'text-gray-500'}`}>
         {service.description}
       </p>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2 justify-center md:justify-start">
         {service.tags.map((tag) => (
           <span
             key={tag}
@@ -125,9 +125,9 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" className="py-32 px-8 md:px-16 bg-white">
+    <section id="services" className="py-16 md:py-32 px-4 md:px-16 bg-white">
       <div className="max-w-7xl mx-auto">
-        <div ref={titleRef} className="mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-8">
+        <div ref={titleRef} className="mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-8 text-center md:text-left">
           <div>
             <p className="text-xs tracking-[0.4em] uppercase text-gray-400 mb-4 font-light">
               What I Do

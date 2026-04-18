@@ -37,8 +37,8 @@ export default function TrustBar() {
   return (
     <section className="bg-white border-b border-gray-100">
       <div ref={rootRef} className="max-w-7xl mx-auto px-8 md:px-16 py-10">
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12 items-center">
-          <div className="flex flex-wrap items-center gap-3">
+        <div className="grid md:grid-cols-3 gap-8 md:gap-12 items-center text-center md:text-left">
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
             <span className="inline-flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-full text-[11px] font-medium tracking-widest uppercase text-gray-700">
               <i className="ri-customer-service-2-line text-sm"></i>
               채널톡 Experts
@@ -49,9 +49,9 @@ export default function TrustBar() {
             </span>
           </div>
 
-          <div className="flex flex-col items-start md:items-center gap-3">
+          <div className="flex flex-col items-center gap-3">
             <p className="text-xs tracking-widest uppercase text-gray-400 font-light">누적 프로젝트 10+ · 6개 산업군</p>
-            <div className="flex flex-wrap gap-2 justify-start md:justify-center">
+            <div className="flex flex-wrap gap-2 justify-center">
               {industries.map((name) => (
                 <span
                   key={name}
@@ -63,7 +63,7 @@ export default function TrustBar() {
             </div>
           </div>
 
-          <p className="text-xs text-gray-500 font-light leading-relaxed italic md:text-right">
+          <p className="text-xs text-gray-500 font-light leading-relaxed italic text-center md:text-right">
             "이 사이트의 상담도 채널톡으로 운영합니다 — 우리가 만든 시스템을 우리가 먼저 씁니다."
           </p>
         </div>

@@ -9,7 +9,7 @@ const timeline = [
 
 const facts = [
   { stat: '50%', desc: '리드는 먼저 답한 업체와 계약한다', source: 'Harvard Business Review' },
-  { stat: '1시간', desc: '응답이 이걸 넘으면 리드는 이미 죽은 것', source: 'InsideSales.com' },
+  { stat: '1시간', desc: '응답이 1시간이 넘으면 리드는 이미 죽은 것', source: 'InsideSales.com' },
   { stat: '42시간', desc: 'B2B 기업의 평균 리드 응답 시간', source: 'HBR Study' },
 ];
 
@@ -90,17 +90,17 @@ export default function Empathy() {
   };
 
   return (
-    <section className="py-32 px-8 md:px-16 bg-[#0A0A0A] text-white overflow-hidden">
+    <section className="py-16 md:py-32 px-4 md:px-16 bg-[#0A0A0A] text-white overflow-hidden">
       <div className="max-w-6xl mx-auto">
 
         {/* Header */}
-        <div ref={headerRef} className="max-w-5xl mb-20">
+        <div ref={headerRef} className="max-w-5xl mb-20 text-center md:text-left">
           <p className="text-xs tracking-[0.4em] uppercase text-white/30 mb-6 font-light">
             The Problem
           </p>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8">
             주말에 문의 하나 놓쳐서,<br />
-            <span className="text-white/40">월요일 아침에 그 메일을 받아봤다면...</span>
+            <span className="text-white/40">월요일 아침에<br className="block md:hidden" /> 메일을 받아봤다면...</span>
           </h2>
 
         </div>
@@ -108,22 +108,19 @@ export default function Empathy() {
         <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-start mb-20">
 
           {/* Left: Story */}
-          <div className="space-y-7 text-white/60 text-[1.15rem] md:text-[1.322rem] leading-relaxed font-light flex flex-col justify-center pt-[15%]">
+          <div className="space-y-7 text-white/60 text-[1rem] md:text-[1.322rem] leading-relaxed font-light flex flex-col justify-center md:pt-[15%] text-center md:text-left">
             <p>
               저도 그 메일을 받았습니다
             </p>
             <p>
-              영업팀 탓도 해봤고, CRM도 바꿔봤고,<br />
-              알림도 10개 받아봤습니다<span className="text-white/80"> 그런데 계속 놓쳤습니다</span>
+              영업팀 탓도 해봤고<br className="block md:hidden" /><span className="hidden md:inline">, </span>CRM도 바꿔봤고<br className="block md:hidden" /><span className="hidden md:inline">, </span>알림도 10개 받아봤습니다<br className="block md:hidden" /><br className="block md:hidden" /><span className="text-white/80"> 그런데 계속 놓쳤습니다</span>
             </p>
             <p className="border-l-2 border-white/20 pl-5">
               이건 영업 문제가 아니라<br />
               <span className="text-white text-xl md:text-2xl font-bold">구조 문제입니다</span>
             </p>
             <p>
-              사람을 더 갈아 넣는다고 1분 안에 응답이 어렵습니다 <br />
-              잠잘 때도, 휴가 갔을 때도, 화장실 갔을 때도 <br />
-              1분 안에 답하는 건 <span className="text-white font-medium">사람으로서는 한계가 있습니다</span>
+              사람을 더 갈아 넣는다고<br className="block md:hidden" /> 1분 안에 응답이 어렵습니다<br className="block md:hidden" /><span className="hidden md:inline"> </span>잠잘 때도, 휴가 갔을 때도, 화장실 갔을 때도<br className="block md:hidden" /> 1분 안에 답하는 건<br className="block md:hidden" /> <span className="text-white font-medium">사람으로서는 한계가 있습니다</span>
             </p>
           </div>
 
@@ -175,16 +172,16 @@ export default function Empathy() {
         </div>
 
         {/* Facts Bar */}
-        <div ref={factsRef} className="grid md:grid-cols-3 gap-px bg-white/5 border border-white/5 mb-20">
+        <div ref={factsRef} className="grid grid-cols-3 md:grid-cols-3 gap-px bg-white/5 border border-white/5 mb-20">
           {facts.map((fact, i) => (
-            <div key={i} className="bg-[#0A0A0A] p-8 md:p-10">
-              <div className="text-4xl md:text-5xl font-bold text-white mb-3 tracking-tight">
+            <div key={i} className="bg-[#0A0A0A] p-4 md:p-10 text-center md:text-left">
+              <div className="text-xl sm:text-3xl md:text-5xl font-bold text-white mb-2 tracking-tight whitespace-nowrap">
                 {fact.stat}
               </div>
-              <p className="text-sm text-white/50 font-light leading-relaxed mb-3">
+              <p className="text-[10px] sm:text-xs md:text-sm text-white/50 font-light leading-relaxed mb-2">
                 {fact.desc}
               </p>
-              <span className="text-[10px] tracking-widest uppercase text-white/20 font-light">
+              <span className="hidden sm:inline text-[10px] tracking-widest uppercase text-white/20 font-light">
                 {fact.source}
               </span>
             </div>
@@ -192,7 +189,7 @@ export default function Empathy() {
         </div>
 
         {/* Closing */}
-        <div ref={closingRef} className="text-center max-w-2xl mx-auto">
+        <div ref={closingRef} className="text-center max-w-2xl mx-auto flex flex-col items-center">
           <p className="text-xl md:text-2xl text-white/70 font-light leading-relaxed mb-8">
             구조를 바꾸면,<br />
             <span className="text-white font-medium">잠잘 때도 리드가 전환됩니다</span>
