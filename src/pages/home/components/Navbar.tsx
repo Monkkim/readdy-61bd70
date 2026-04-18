@@ -62,7 +62,7 @@ export default function Navbar() {
                 : 'border-white text-white hover:bg-white hover:text-black'
             }`}
           >
-            Contact
+            30분 진단 예약
           </a>
         </div>
 
@@ -106,7 +106,7 @@ export default function Navbar() {
             onClick={() => setMobileOpen(false)}
             className="text-xs tracking-widest uppercase font-medium px-6 py-2.5 border border-black text-black hover:bg-black hover:text-white transition-all text-center cursor-pointer whitespace-nowrap"
           >
-            Contact
+            30분 진단 예약
           </a>
         </div>
       )}

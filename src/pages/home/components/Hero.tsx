@@ -67,11 +67,14 @@ export default function Hero() {
             <span className="text-white/30">매출의 78%를 잃습니다</span>
           </h1>
 
-          <p ref={subRef} className="text-base md:text-lg text-white/50 mb-12 max-w-2xl leading-relaxed font-light">
-            리드의 <span className="text-white/80 font-medium">78%는 가장 먼저 응답한 업체</span>와 계약합니다.
-            1분 내 응답 시 전환율 <span className="text-white/80 font-medium">391% 상승</span>,
-            5분이 지나면 가능성은 <span className="text-white/80 font-medium">1/8로 급락</span>.
-            <br />AI가 모든 채널에서 즉시 응대하고, 전환까지 자동으로 완결합니다.
+          <p ref={subRef} className="text-base md:text-lg text-white/50 mb-6 max-w-2xl leading-relaxed font-light">
+            B2B 리드의 평균 응답시간은 <span className="text-white/80 font-medium">42시간</span><sup className="text-white/40">1</sup>.
+            1분 내 응답 시 전환율 <span className="text-white/80 font-medium">391% 상승</span><sup className="text-white/40">2</sup>.
+            <br />투쏠은 이 <span className="text-white/80 font-medium">'응답 속도'</span> 하나에 집중하는 AI 시스템을 설계합니다.
+          </p>
+          <p className="text-[11px] text-white/30 mb-12 max-w-2xl leading-relaxed font-light tracking-wide">
+            <sup>1</sup> Harvard Business Review · "The Short Life of Online Sales Leads" &nbsp;
+            <sup>2</sup> InsideSales.com · Lead Response Management Study
           </p>
 
           <div ref={statsRef} className="flex flex-wrap gap-10 mb-14">
@@ -83,26 +86,30 @@ export default function Hero() {
             ))}
           </div>
 
-          <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4">
+          <div ref={ctaRef} className="flex flex-col sm:flex-row gap-4 items-start">
+            <div className="flex flex-col gap-2">
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 text-xs tracking-widest uppercase font-semibold hover:bg-gray-100 transition-all cursor-pointer whitespace-nowrap group rounded-full"
+              >
+                <span>30분 진단 예약</span>
+                <i className="ri-arrow-right-line text-base group-hover:translate-x-1 transition-transform"></i>
+              </a>
+              <span className="text-[11px] text-white/40 font-light tracking-wider pl-2">이번 주 남은 자리 3개</span>
+            </div>
             <a
-              href="#contact"
-              className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 text-xs tracking-widest uppercase font-semibold hover:bg-gray-100 transition-all cursor-pointer whitespace-nowrap group rounded-full"
-            >
-              <span>무료 상담 신청</span>
-              <i className="ri-arrow-right-line text-base group-hover:translate-x-1 transition-transform"></i>
-            </a>
-            <a
-              href="#services"
+              href="#testimonials"
               className="inline-flex items-center gap-3 border border-white/30 text-white px-8 py-4 text-xs tracking-widest uppercase font-semibold hover:border-white hover:bg-white/10 transition-all cursor-pointer whitespace-nowrap rounded-full"
             >
-              <span>어떻게 작동하나요?</span>
+              <i className="ri-play-circle-line text-base"></i>
+              <span>실제 고객이 쓰는 모습 30초 보기</span>
             </a>
           </div>
         </div>
       </div>
 
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
-        <span className="text-white/20 text-xs tracking-widest uppercase">Scroll</span>
+        <span className="text-white/20 text-xs tracking-widest uppercase">증거 보기 ↓</span>
         <div className="w-px h-12 bg-gradient-to-b from-white/30 to-transparent animate-pulse"></div>
       </div>
     </section>

@@ -1,29 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BizCoach - Professional Business Coaching & Leadership Development</title>
-    <meta name="description" content="Transform your business with expert coaching services. Strategic planning, leadership development, and executive coaching for entrepreneurs and business leaders. 15+ years experience, 500+ clients coached, 98% success rate." />
-    <meta name="keywords" content="business coaching, executive coaching, leadership development, strategic planning, business transformation, entrepreneur coaching" />
-    <link rel="canonical" href="https://bizcoach.example.com/" />
-    <meta name="last-modified" content="2025-01-01" />
-    
+    <title>투쏠 — AI 자동화로 1분 응답 구조를 설계합니다</title>
+    <meta name="description" content="B2B 리드 응답시간을 42시간에서 1초로. 투쏠이 설계하는 AI Sales · Voice Agent · Chat & CRM 시스템. 30분 무료 진단 예약." />
+    <meta name="keywords" content="AI 자동화, 리드 응답, Voice Agent, 채널톡, n8n, AI 영업, CRM 통합, 챗봇 대안" />
+    <link rel="canonical" href="https://tusol.ai/" />
+
     <!-- Open Graph -->
-    <meta property="og:title" content="BizCoach - Professional Business Coaching & Leadership Development" />
-    <meta property="og:description" content="Transform your business with expert coaching services. Strategic planning, leadership development, and executive coaching for entrepreneurs and business leaders." />
+    <meta property="og:title" content="투쏠 — AI 자동화로 1분 응답 구조를 설계합니다" />
+    <meta property="og:description" content="B2B 리드 응답시간을 42시간에서 1초로. 투쏠이 설계하는 AI Sales · Voice Agent · Chat & CRM 시스템." />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://bizcoach.example.com/" />
-    
+    <meta property="og:url" content="https://tusol.ai/" />
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="BizCoach - Professional Business Coaching & Leadership Development" />
-    <meta name="twitter:description" content="Transform your business with expert coaching services. Strategic planning, leadership development, and executive coaching." />
-    
+    <meta name="twitter:title" content="투쏠 — AI 자동화로 1분 응답 구조를 설계합니다" />
+    <meta name="twitter:description" content="B2B 리드 응답시간을 42시간에서 1초로. 투쏠이 설계하는 AI 자동화 시스템." />
+
     <!-- Remix Icon -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet" />
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -32,23 +31,16 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
-    <script
-      src="https://readdy.ai/api/public/assistant/widget?projectId=30452466-940f-4322-92b0-dee5cf65717a"
-      mode="hybrid"
-      voice-show-transcript="true"
-      theme="light"
-      size="compact"
-      position="bottom-right"
-      radius="small"
-      accent-color="#111111"
-      button-base-color="#111111"
-      button-accent-color="#FFFFFF"
-      main-label="투쏠 AI 어시스턴트"
-      empty-chat-message="안녕하세요! AI 자동화에 대해 궁금한 점이 있으시면 편하게 물어보세요."
-      empty-voice-message="안녕하세요! 음성으로 편하게 말씀해 주세요."
-      start-button-text="대화 시작"
-      end-button-text="대화 종료"
-      defer
-    ></script>
+
+    <!--
+      채널톡 상담 위젯 (우측 하단)
+      TODO: 아래 'YOUR_PLUGIN_KEY' 자리에 채널톡 pluginKey 입력 후 활성화.
+      채널톡 관리자 > 설정 > 웹 채널 설치 > JavaScript 탭에서 pluginKey 확인.
+
+    <script>
+      (function(){var w=window;if(w.ChannelIO){return w.console.error("ChannelIO script included twice.");}var ch=function(){ch.c(arguments);};ch.q=[];ch.c=function(args){ch.q.push(args);};w.ChannelIO=ch;function l(){if(w.ChannelIOInitialized){return;}w.ChannelIOInitialized=true;var s=document.createElement("script");s.type="text/javascript";s.async=true;s.src="https://cdn.channel.io/plugin/ch-plugin-web.js";var x=document.getElementsByTagName("script")[0];if(x.parentNode){x.parentNode.insertBefore(s,x);}}if(document.readyState==="complete"){l();}else{w.addEventListener("DOMContentLoaded",l);w.addEventListener("load",l);}})();
+      ChannelIO('boot', { "pluginKey": "YOUR_PLUGIN_KEY" });
+    </script>
+    -->
   </body>
 </html>
