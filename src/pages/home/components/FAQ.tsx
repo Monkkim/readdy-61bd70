@@ -1,33 +1,52 @@
 import { useState, useRef, useEffect } from 'react';
 
-const faqs = [
+const faqCategories = [
   {
-    q: '실제 비용은 어느 정도이며\nROI는 얼마나 빨리 확인할 수 있나요?',
-    a: '프로젝트 규모와 복잡도에 따라 다르지만, 대부분의 클라이언트는 도입 후 1~3개월 내에 리드 전환율 상승과 응대 비용 절감 효과를 체감합니다 초기 상담을 통해 현재 업무 흐름을 진단하고, 예상 ROI를 구체적인 수치로 제시해드립니다'
+    label: '코칭',
+    items: [
+      {
+        q: 'AI 에이전트를 한 번도 다뤄본 적 없는데 따라갈 수 있나요?',
+        a: '네, 가능합니다. 그래서 Week 1이 기초 강의로 시작합니다. 1:1 미팅이라 속도를 맞춰 진행하고, 코드를 모르는 분들도 따라올 수 있도록 설계되어 있습니다. 클라이언트 대부분이 자동화 도구를 처음 다루는 비개발자 대표였습니다.',
+      },
+      {
+        q: '4주 안에 사업 전반 자동화가 다 가능한가요?',
+        a: '코칭은 워크플로우 1개 또는 에이전트 1개를 같이 만들고 이식하는 데 집중합니다. 그 1개를 만드는 과정에서 자립 역량이 생기면, 다음 자동화는 스스로 시작 가능합니다. 사업 전반 자동화는 컨설팅이 더 적합합니다.',
+      },
+      {
+        q: 'Week 1 강의는 어떤 식으로 진행되나요?',
+        a: '1:1 화상 미팅으로 진행됩니다. Claude Code의 기본 개념, 사용법, 어떻게 비즈니스에 활용할지를 당신 사업의 맥락에 맞춰 설명합니다. 동시에 진단을 통해 4주 동안 만들 워크플로우 1개를 함께 정합니다.',
+      },
+      {
+        q: 'Week 2~3 페어 빌드는 어떻게 진행되나요?',
+        a: '매주 1회 1:1 미팅에서 함께 빌드합니다. 비동기로도 막힌 부분에 대해 피드백 가능합니다. 외주처럼 일방적으로 받는 게 아니라, 당신이 직접 만들면서 옆에서 안내받는 형태입니다. 평균 시간 투입은 주 4시간 (1:1 미팅 1시간 + 실습 3시간) 정도입니다.',
+      },
+      {
+        q: '4주 후 시스템에 문제가 생기면 누가 책임지나요?',
+        a: '4주가 끝나면 운영 권한이 완전히 이전됩니다. 기본적으로 2주간 무료 유지 보수를 받으실 수 있습니다. 큰 변경이나 추가 자동화가 필요하면 별도 프로젝트로 진행 가능합니다.',
+      },
+      {
+        q: '비용은 얼마인가요?',
+        a: '비용의 경우 30분 무료 진단을 통해 상황과 범위를 확인한 후 정확한 안내드립니다.',
+      },
+    ],
   },
   {
-    q: '구축에는 얼마나 시간이 걸리며\n기존 운영에 방해가 되지는 않나요?',
-    a: '기본 시스템은 2~4주 내 구축 가능합니다 기존 운영 중단 없이 병렬로 진행하며, 단계적으로 전환하기 때문에 현업에 미치는 영향을 최소화합니다 전환 과정 전반을 함께 관리해드립니다'
+    label: '컨설팅',
+    items: [
+      {
+        q: '코칭과 컨설팅 차이가 뭔가요?',
+        a: '코칭은 같이 만들면서 운영 역량까지 이식받는 모델이고, 컨설팅은 더 넓은 범위의 자동화를 진단·설계·구축까지 진행하는 모델입니다. 직접 만들고 운영하고 싶다면 코칭이, 시간 여유가 없거나 사업 전반의 복잡한 자동화가 필요하다면 컨설팅이 적합합니다.',
+      },
+      {
+        q: '코칭이나 컨설팅을 진행하지 않는 자동화도 있나요?',
+        a: '네, 있습니다. 유튜브 숏츠 자동화, 네이버 블로그 자동 발행, 주식 자동매매는 진행하지 않습니다.',
+      },
+    ],
   },
-  {
-    q: '이전에 AI나 자동화를 시도했다가\n잘 안 된 경험이 있습니다. 이번에도 단순한 유행은 아닌가요?',
-    a: '많은 분들이 같은 경험을 하셨습니다 실패의 대부분은 "빠르게 도입"에 집중하고 비즈니스 맥락을 무시했기 때문입니다 저는 느린 AI 철학으로, 먼저 충분히 이해하고 설계합니다 기술이 아닌 문제 해결에 집중합니다'
-  },
-  {
-    q: 'AI 기술 변화가 빠른데\n지금 도입하는 것이 위험하지는 않나요?',
-    a: '오히려 지금이 가장 좋은 시점입니다 기술이 빠르게 발전할수록, 먼저 도입한 기업이 데이터와 노하우를 축적해 경쟁 우위를 가져갑니다 변화에 유연하게 대응할 수 있는 구조로 설계하기 때문에 기술 변화에도 안정적으로 운영됩니다'
-  },
-  {
-    q: '우리 비즈니스에\nAI가 적합한지 어떻게 알 수 있나요?',
-    a: '30분 무료 상담을 통해 현재 업무 흐름을 진단해드립니다 적합하지 않다면 솔직하게 말씀드립니다 억지로 도입을 권유하지 않습니다 먼저 이야기를 나눠보세요'
-  }
 ];
 
-function FAQItem({ faq, index, isOpen, onToggle }: {
-  faq: typeof faqs[0];
-  index: number;
-  isOpen: boolean;
-  onToggle: () => void;
+function FAQItem({ q, a, index, isOpen, onToggle }: {
+  q: string; a: string; index: number; isOpen: boolean; onToggle: () => void;
 }) {
   const bodyRef = useRef<HTMLDivElement>(null);
   const itemRef = useRef<HTMLDivElement>(null);
@@ -42,7 +61,7 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setTimeout(() => {
-              el.style.transition = `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 60}ms, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 60}ms`;
+              el.style.transition = `opacity 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 50}ms, transform 0.6s cubic-bezier(0.16,1,0.3,1) ${index * 50}ms`;
               el.style.opacity = '1';
               el.style.transform = 'translateY(0)';
             }, 50);
@@ -72,13 +91,13 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
     <div ref={itemRef} className="border-b border-gray-100 last:border-b-0">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between py-6 md:py-7 text-left cursor-pointer group focus:outline-none"
+        className="w-full flex items-center justify-between py-5 md:py-6 text-left cursor-pointer group focus:outline-none"
         aria-expanded={isOpen}
       >
-        <span className={`text-sm md:text-base font-medium leading-snug pr-6 transition-colors duration-300 whitespace-pre-line ${isOpen ? 'text-black' : 'text-gray-700 group-hover:text-black'}`}>
-          {faq.q}
+        <span className={`text-sm md:text-base font-medium leading-snug pr-6 transition-colors duration-300 ${isOpen ? 'text-black' : 'text-gray-700 group-hover:text-black'}`}>
+          {q}
         </span>
-        <span className={`shrink-0 w-7 h-7 flex items-center justify-center border transition-all duration-300 ${isOpen ? 'border-black bg-black text-white rotate-45' : 'border-gray-200 text-gray-400 group-hover:border-gray-400'}`}>
+        <span className={`shrink-0 w-7 h-7 flex items-center justify-center border transition-all duration-300 rounded-full ${isOpen ? 'border-black bg-black text-white rotate-45' : 'border-gray-200 text-gray-400 group-hover:border-gray-400'}`}>
           <i className="ri-add-line text-sm"></i>
         </span>
       </button>
@@ -86,8 +105,8 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
         ref={bodyRef}
         style={{ maxHeight: '0px', opacity: 0, overflow: 'hidden', transition: 'max-height 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease' }}
       >
-        <p className="text-sm text-gray-500 leading-relaxed font-light pb-6 md:pb-7 pr-12">
-          {faq.a}
+        <p className="text-sm text-gray-500 leading-relaxed font-light pb-5 md:pb-6 pr-12">
+          {a}
         </p>
       </div>
     </div>
@@ -95,7 +114,7 @@ function FAQItem({ faq, index, isOpen, onToggle }: {
 }
 
 export default function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openKey, setOpenKey] = useState<string | null>(null);
   const titleRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -122,29 +141,27 @@ export default function FAQ() {
     return () => observer.disconnect();
   }, []);
 
-  const handleToggle = (index: number) => {
-    setOpenIndex((prev) => (prev === index ? null : index));
-  };
+  let globalIndex = 0;
 
   return (
-    <section id="faq" className="py-16 md:py-32 px-4 md:px-16 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-[1fr_2fr] gap-16 md:gap-24 items-start">
+    <section id="faq" className="py-16 md:py-28 px-4 md:px-16 bg-white">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-20 items-start">
 
-          {/* Left: Title */}
+          {/* Left */}
           <div ref={titleRef} className="md:sticky md:top-32 text-center md:text-left">
-            <p className="text-xs tracking-[0.4em] uppercase text-gray-400 mb-4 font-light">
-              FAQ
-            </p>
-            <h2 className="text-3xl md:text-6xl font-bold text-black leading-tight mb-6 whitespace-nowrap">
+            <p className="text-xs tracking-[0.4em] uppercase text-gray-400 mb-4 font-light">FAQ</p>
+            <h2 className="text-3xl md:text-5xl font-bold text-black leading-tight mb-6">
               자주 묻는 질문
             </h2>
-            <p className="text-sm text-gray-400 font-light leading-relaxed mb-8 whitespace-pre-line">
-              {'AI 자동화 도입에 대해\n가장 많이 받는 질문들을 모았습니다'}
+            <p className="text-sm text-gray-400 font-light leading-relaxed mb-8">
+              코칭과 컨설팅, 그리고 Claude Code 입문에 대해<br />
+              가장 많이 받는 질문들을 모았습니다
             </p>
             <a
               href="#contact"
-              className="inline-flex items-center gap-3 border border-black text-black px-6 py-3 text-xs tracking-widest uppercase font-semibold hover:bg-black hover:text-white transition-all cursor-pointer whitespace-nowrap group mx-auto md:mx-0"
+              onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
+              className="inline-flex items-center gap-3 border border-black text-black px-6 py-3 text-xs tracking-widest uppercase font-semibold hover:bg-black hover:text-white transition-all cursor-pointer whitespace-nowrap group mx-auto md:mx-0 rounded-full"
             >
               <span>직접 문의하기</span>
               <i className="ri-arrow-right-line text-sm group-hover:translate-x-1 transition-transform"></i>
@@ -152,15 +169,24 @@ export default function FAQ() {
           </div>
 
           {/* Right: Accordion */}
-          <div className="divide-y-0">
-            {faqs.map((faq, index) => (
-              <FAQItem
-                key={index}
-                faq={faq}
-                index={index}
-                isOpen={openIndex === index}
-                onToggle={() => handleToggle(index)}
-              />
+          <div>
+            {faqCategories.map((cat) => (
+              <div key={cat.label}>
+                {cat.items.map((item) => {
+                  const key = `${cat.label}-${globalIndex}`;
+                  const idx = globalIndex++;
+                  return (
+                    <FAQItem
+                      key={key}
+                      q={item.q}
+                      a={item.a}
+                      index={idx}
+                      isOpen={openKey === key}
+                      onToggle={() => setOpenKey((prev) => (prev === key ? null : key))}
+                    />
+                  );
+                })}
+              </div>
             ))}
           </div>
         </div>

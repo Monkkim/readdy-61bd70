@@ -1,19 +1,18 @@
 import { useRef, useEffect } from 'react';
 
-const industries = [
-  '마케팅',
-  '피트니스',
-  '금융',
-  '교육',
-  '미디어',
-  '전시',
+const trustItems = [
+  { icon: 'ri-youtube-line', text: '유튜브 10,000+' },
+  { icon: 'ri-stack-line', text: '자동화 프로젝트 50+' },
+  { icon: 'ri-customer-service-2-line', text: '채널톡 Experts' },
+  { icon: 'ri-graduation-cap-line', text: '패스트캠퍼스 강사' },
+  { icon: 'ri-group-line', text: 'ABC 커뮤니티 2,000+' },
 ];
 
 export default function TrustBar() {
-  const rootRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = rootRef.current;
+    const el = ref.current;
     if (!el) return;
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
@@ -21,51 +20,48 @@ export default function TrustBar() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            el.style.transition = 'opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1)';
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
+            setTimeout(() => {
+              el.style.transition = 'opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1)';
+              el.style.opacity = '1';
+              el.style.transform = 'translateY(0)';
+            }, 50);
             observer.unobserve(el);
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
     observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section className="bg-white border-b border-gray-100">
-      <div ref={rootRef} className="max-w-7xl mx-auto px-8 md:px-16 py-10">
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12 items-center text-center md:text-left">
-          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-full text-[11px] font-medium tracking-widest uppercase text-gray-700">
-              <i className="ri-customer-service-2-line text-sm"></i>
-              채널톡 Experts
-            </span>
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-full text-[11px] font-medium tracking-widest uppercase text-gray-700">
-              <i className="ri-graduation-cap-line text-sm"></i>
-              패스트캠퍼스 강사
-            </span>
-          </div>
-
-          <div className="flex flex-col items-center gap-3">
-            <p className="text-xs tracking-widest uppercase text-gray-400 font-light">누적 프로젝트 10+ · 6개 산업군</p>
-            <div className="flex flex-wrap gap-2 justify-center">
-              {industries.map((name) => (
-                <span
-                  key={name}
-                  className="inline-flex items-center px-3 py-1 bg-gray-50 border border-gray-100 rounded-full text-[11px] text-gray-600 font-light tracking-wider"
-                >
-                  {name}
-                </span>
-              ))}
+    <section id="trust" className="py-8 md:py-12 px-4 md:px-16 bg-[#0A0A0A] text-white border-t border-white/5">
+      <div ref={ref} className="max-w-6xl mx-auto">
+        {/* Desktop: horizontal row */}
+        <div className="hidden md:flex items-center justify-center gap-8 lg:gap-12">
+          {trustItems.map((item, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <i className={`${item.icon} text-sm text-white/40`}></i>
+              <span className="text-sm text-white/60 font-light whitespace-nowrap">{item.text}</span>
+              {i < trustItems.length - 1 && (
+                <span className="ml-6 lg:ml-10 text-white/10">|</span>
+              )}
             </div>
-          </div>
+          ))}
+        </div>
 
-          <p className="text-xs text-gray-500 font-light leading-relaxed italic text-center md:text-right">
-            "이 사이트의 상담도 채널톡으로 운영합니다 — 우리가 만든 시스템을 우리가 먼저 씁니다."
-          </p>
+        {/* Mobile: 2-row grid or horizontal scroll */}
+        <div className="md:hidden flex flex-wrap items-center justify-center gap-x-4 gap-y-3">
+          {trustItems.map((item, i) => (
+            <div key={i} className="flex items-center gap-1.5">
+              <i className={`${item.icon} text-xs text-white/40`}></i>
+              <span className="text-xs text-white/50 font-light whitespace-nowrap">{item.text}</span>
+              {i < trustItems.length - 1 && (
+                <span className="ml-2 text-white/10">·</span>
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </section>

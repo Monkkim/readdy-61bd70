@@ -63,10 +63,10 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-10">
           {[
-            { label: 'Services', hash: '#services' },
+            { label: '코칭', hash: '#coaching' },
+            { label: '외주 서비스', hash: '#services' },
+            { label: '후기', hash: '#cases' },
             { label: 'About', hash: '#about' },
-            { label: 'Work', hash: '#testimonials' },
-            { label: 'Insights', hash: '#faq' },
             { label: 'FAQ', hash: '#faq' },
           ].map((item) => (
             <a
@@ -85,7 +85,7 @@ export default function Navbar() {
             onClick={(e) => handleAnchorClick(e, '#contact')}
             className="text-xs tracking-widest uppercase font-medium px-6 py-2.5 border border-white bg-white text-black hover:bg-gray-100 transition-all duration-300 whitespace-nowrap cursor-pointer rounded-full"
           >
-            30분 진단 예약
+            30분 무료 진단 받기
           </a>
         </div>
 
@@ -103,10 +103,10 @@ export default function Navbar() {
       {mobileOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 px-8 py-6 flex flex-col gap-6">
           {[
-            { label: 'Services', hash: '#services' },
+            { label: '코칭', hash: '#coaching' },
+            { label: '외주 서비스', hash: '#services' },
+            { label: '후기', hash: '#cases' },
             { label: 'About', hash: '#about' },
-            { label: 'Work', hash: '#testimonials' },
-            { label: 'Insights', hash: '#faq' },
             { label: 'FAQ', hash: '#faq' },
           ].map((item) => (
             <a
@@ -123,7 +123,7 @@ export default function Navbar() {
             onClick={(e) => handleAnchorClick(e, '#contact')}
             className="text-xs tracking-widest uppercase font-medium px-6 py-2.5 border border-black text-black hover:bg-black hover:text-white transition-all text-center cursor-pointer whitespace-nowrap"
           >
-            30분 진단 예약
+            30분 무료 진단 받기
           </a>
         </div>
       )}
