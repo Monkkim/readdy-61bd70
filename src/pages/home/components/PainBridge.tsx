@@ -65,6 +65,8 @@ export default function PainBridge() {
               src="https://static.readdy.ai/image/47d5051b6fbde7de04c78dda01d0a9c3/504b9159fc11691927ac4e4963f49ee7.png"
               alt="Andrej Karpathy"
               className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <blockquote className="text-lg md:text-xl font-light text-white/90 max-w-lg leading-relaxed mb-4">

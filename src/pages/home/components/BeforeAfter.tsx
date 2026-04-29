@@ -304,6 +304,28 @@ export default function BeforeAfter() {
           </div>
 
         </div>
+
+        {/* CTA */}
+        <div
+          className="mt-16 md:mt-24 flex flex-col items-center text-center"
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'none' : 'translateY(30px)',
+            transition: 'opacity 0.8s cubic-bezier(0.16,1,0.3,1) 1s, transform 0.8s cubic-bezier(0.16,1,0.3,1) 1s',
+          }}
+        >
+          <button
+            onClick={() => {
+              const el = document.querySelector('#contact');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="inline-flex items-center gap-3 border border-white text-white px-8 md:px-10 py-4 text-xs tracking-widest uppercase font-semibold hover:bg-white hover:text-black transition-all duration-300 cursor-pointer whitespace-nowrap group rounded-full"
+          >
+            <span>이렇게 바뀐 내 사업 보기</span>
+            <i className="ri-arrow-right-line text-base group-hover:translate-x-1 transition-transform"></i>
+          </button>
+        </div>
+
       </div>
     </section>
   );

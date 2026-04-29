@@ -1,4 +1,5 @@
 import { useRef, useEffect } from 'react';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 const weeks = [
   {
@@ -64,6 +65,9 @@ export default function TheMethod() {
   const timelineRef = useRef<HTMLDivElement>(null);
   const promiseRef = useRef<HTMLDivElement>(null);
 
+  const isLg = useMediaQuery('(min-width: 1024px)');
+  const isMd = useMediaQuery('(min-width: 768px)');
+
   useEffect(() => {
     const items = [
       { el: headerRef.current, delay: 0 },
@@ -117,14 +121,61 @@ Week 1에 기초를 다지고, Week 2~3에 같이 만들고, Week 4에 이식합
           </p>
         </div>
 
-        {/* Horizontal Timeline */}
+        {/* Timeline — 조건부 렌더링: 한 breakpoint만 렌더링 */}
         <div ref={timelineRef}>
-          {/* Desktop: Horizontal cards with connecting line */}
-          <div className="hidden lg:block relative">
-            {/* Connecting line */}
-            <div className="absolute top-[3.5rem] left-[12%] right-[12%] h-0.5 bg-white/15"></div>
+          {isLg ? (
+            /* Desktop: Horizontal cards with connecting line */
+            <div className="relative">
+              {/* Connecting line */}
+              <div className="absolute top-[3.5rem] left-[12%] right-[12%] h-0.5 bg-white/15"></div>
 
-            <div className="grid grid-cols-4 gap-6">
+              <div className="grid grid-cols-4 gap-6">
+                {weeks.map((week, i) => {
+                  const colors = [
+                    { border: 'border-sky-500/40', bg: 'bg-sky-500/10', circle: 'border-sky-500/60', num: 'text-sky-300', label: 'text-sky-400/80', title: 'text-sky-300', badge: 'border-sky-500/30 text-sky-300/80 bg-sky-500/10' },
+                    { border: 'border-amber-400/50', bg: 'bg-amber-400/10', circle: 'border-amber-400/70', num: 'text-amber-400', label: 'text-amber-400/80', title: 'text-amber-400', badge: 'border-amber-400/30 text-amber-400/80 bg-amber-400/10' },
+                    { border: 'border-amber-400/50', bg: 'bg-amber-400/10', circle: 'border-amber-400/70', num: 'text-amber-400', label: 'text-amber-400/80', title: 'text-amber-400', badge: 'border-amber-400/30 text-amber-400/80 bg-amber-400/10' },
+                    { border: 'border-emerald-500/40', bg: 'bg-emerald-500/10', circle: 'border-emerald-500/60', num: 'text-emerald-400', label: 'text-emerald-400/80', title: 'text-emerald-400', badge: 'border-emerald-500/30 text-emerald-400/80 bg-emerald-500/10' },
+                  ];
+                  const c = colors[i];
+                  return (
+                  <div key={i} className="relative">
+                    {/* Week number circle */}
+                    <div className="flex justify-center mb-6">
+                      <div className={`relative z-10 w-14 h-14 flex items-center justify-center rounded-full border-2 bg-black ${c.circle}`}>
+                        <span className={`text-sm font-bold ${c.num}`}>{i + 1}</span>
+                      </div>
+                    </div>
+
+                    {/* Card */}
+                    <div className={`border rounded-lg p-6 ${c.border} ${c.bg}`}>
+                      <span className={`text-xs tracking-widest uppercase font-semibold block mb-3 ${c.label}`}>
+                        {week.week}
+                      </span>
+                      <h3 className={`text-base font-bold mb-4 ${c.title}`}>
+                        {week.phase}
+                      </h3>
+                      <ul className="space-y-2.5 mb-5">
+                        {week.activities.map((act, j) => (
+                          <li key={j} className="flex items-start gap-2.5 text-white/70 text-sm font-light">
+                            <i className="ri-arrow-right-s-line text-white/40 text-sm shrink-0 mt-0.5"></i>
+                            <span>{act}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-medium ${c.badge}`}>
+                        <i className="ri-flag-line text-xs"></i>
+                        <span>{week.outcome}</span>
+                      </div>
+                    </div>
+                  </div>
+                  );
+                })}
+              </div>
+            </div>
+          ) : isMd ? (
+            /* Tablet: 2x2 grid */
+            <div className="grid grid-cols-2 gap-5">
               {weeks.map((week, i) => {
                 const colors = [
                   { border: 'border-sky-500/40', bg: 'bg-sky-500/10', circle: 'border-sky-500/60', num: 'text-sky-300', label: 'text-sky-400/80', title: 'text-sky-300', badge: 'border-sky-500/30 text-sky-300/80 bg-sky-500/10' },
@@ -134,120 +185,75 @@ Week 1에 기초를 다지고, Week 2~3에 같이 만들고, Week 4에 이식합
                 ];
                 const c = colors[i];
                 return (
-                <div key={i} className="relative">
-                  {/* Week number circle */}
-                  <div className="flex justify-center mb-6">
-                    <div className={`relative z-10 w-14 h-14 flex items-center justify-center rounded-full border-2 bg-black ${c.circle}`}>
+                <div key={i} className={`border rounded-lg p-6 ${c.border} ${c.bg}`}>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className={`w-10 h-10 flex items-center justify-center rounded-full border-2 bg-black ${c.circle}`}>
                       <span className={`text-sm font-bold ${c.num}`}>{i + 1}</span>
                     </div>
-                  </div>
-
-                  {/* Card */}
-                  <div className={`border rounded-lg p-6 ${c.border} ${c.bg}`}>
-                    <span className={`text-xs tracking-widest uppercase font-semibold block mb-3 ${c.label}`}>
+                    <span className={`text-xs tracking-widest uppercase font-semibold ${c.label}`}>
                       {week.week}
                     </span>
-                    <h3 className={`text-base font-bold mb-4 ${c.title}`}>
-                      {week.phase}
-                    </h3>
-                    <ul className="space-y-2.5 mb-5">
-                      {week.activities.map((act, j) => (
-                        <li key={j} className="flex items-start gap-2.5 text-white/70 text-sm font-light">
-                          <i className="ri-arrow-right-s-line text-white/40 text-sm shrink-0 mt-0.5"></i>
-                          <span>{act}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-medium ${c.badge}`}>
-                      <i className="ri-flag-line text-xs"></i>
-                      <span>{week.outcome}</span>
-                    </div>
+                  </div>
+                  <h3 className={`text-base font-bold mb-4 ${c.title}`}>
+                    {week.phase}
+                  </h3>
+                  <ul className="space-y-2.5 mb-5">
+                    {week.activities.map((act, j) => (
+                      <li key={j} className="flex items-start gap-2.5 text-white/70 text-sm font-light">
+                        <i className="ri-arrow-right-s-line text-white/40 text-sm shrink-0 mt-0.5"></i>
+                        <span>{act}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-medium ${c.badge}`}>
+                    <i className="ri-flag-line text-xs"></i>
+                    <span>{week.outcome}</span>
                   </div>
                 </div>
                 );
               })}
             </div>
-          </div>
-
-          {/* Tablet: 2x2 grid */}
-          <div className="hidden md:grid lg:hidden grid-cols-2 gap-5">
-            {weeks.map((week, i) => {
-              const colors = [
-                { border: 'border-sky-500/40', bg: 'bg-sky-500/10', circle: 'border-sky-500/60', num: 'text-sky-300', label: 'text-sky-400/80', title: 'text-sky-300', badge: 'border-sky-500/30 text-sky-300/80 bg-sky-500/10' },
-                { border: 'border-amber-400/50', bg: 'bg-amber-400/10', circle: 'border-amber-400/70', num: 'text-amber-400', label: 'text-amber-400/80', title: 'text-amber-400', badge: 'border-amber-400/30 text-amber-400/80 bg-amber-400/10' },
-                { border: 'border-amber-400/50', bg: 'bg-amber-400/10', circle: 'border-amber-400/70', num: 'text-amber-400', label: 'text-amber-400/80', title: 'text-amber-400', badge: 'border-amber-400/30 text-amber-400/80 bg-amber-400/10' },
-                { border: 'border-emerald-500/40', bg: 'bg-emerald-500/10', circle: 'border-emerald-500/60', num: 'text-emerald-400', label: 'text-emerald-400/80', title: 'text-emerald-400', badge: 'border-emerald-500/30 text-emerald-400/80 bg-emerald-500/10' },
-              ];
-              const c = colors[i];
-              return (
-              <div key={i} className={`border rounded-lg p-6 ${c.border} ${c.bg}`}>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className={`w-10 h-10 flex items-center justify-center rounded-full border-2 bg-black ${c.circle}`}>
-                    <span className={`text-sm font-bold ${c.num}`}>{i + 1}</span>
+          ) : (
+            /* Mobile: Vertical stack */
+            <div className="space-y-4">
+              {weeks.map((week, i) => {
+                const colors = [
+                  { border: 'border-sky-500/40', bg: 'bg-sky-500/10', circle: 'border-sky-500/60', num: 'text-sky-300', label: 'text-sky-400/80', title: 'text-sky-300', badge: 'border-sky-500/30 text-sky-300/80 bg-sky-500/10' },
+                  { border: 'border-amber-400/50', bg: 'bg-amber-400/10', circle: 'border-amber-400/70', num: 'text-amber-400', label: 'text-amber-400/80', title: 'text-amber-400', badge: 'border-amber-400/30 text-amber-400/80 bg-amber-400/10' },
+                  { border: 'border-amber-400/50', bg: 'bg-amber-400/10', circle: 'border-amber-400/70', num: 'text-amber-400', label: 'text-amber-400/80', title: 'text-amber-400', badge: 'border-amber-400/30 text-amber-400/80 bg-amber-400/10' },
+                  { border: 'border-emerald-500/40', bg: 'bg-emerald-500/10', circle: 'border-emerald-500/60', num: 'text-emerald-400', label: 'text-emerald-400/80', title: 'text-emerald-400', badge: 'border-emerald-500/30 text-emerald-400/80 bg-emerald-500/10' },
+                ];
+                const c = colors[i];
+                return (
+                <div key={i} className={`border rounded-lg p-5 ${c.border} ${c.bg}`}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className={`w-9 h-9 flex items-center justify-center rounded-full border-2 bg-black ${c.circle}`}>
+                      <span className={`text-sm font-bold ${c.num}`}>{i + 1}</span>
+                    </div>
+                    <span className={`text-xs tracking-widest uppercase font-semibold ${c.label}`}>
+                      {week.week}
+                    </span>
                   </div>
-                  <span className={`text-xs tracking-widest uppercase font-semibold ${c.label}`}>
-                    {week.week}
-                  </span>
-                </div>
-                <h3 className={`text-base font-bold mb-4 ${c.title}`}>
-                  {week.phase}
-                </h3>
-                <ul className="space-y-2.5 mb-5">
-                  {week.activities.map((act, j) => (
-                    <li key={j} className="flex items-start gap-2.5 text-white/70 text-sm font-light">
-                      <i className="ri-arrow-right-s-line text-white/40 text-sm shrink-0 mt-0.5"></i>
-                      <span>{act}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-medium ${c.badge}`}>
-                  <i className="ri-flag-line text-xs"></i>
-                  <span>{week.outcome}</span>
-                </div>
-              </div>
-              );
-            })}
-          </div>
-
-          {/* Mobile: Vertical stack */}
-          <div className="md:hidden space-y-4">
-            {weeks.map((week, i) => {
-              const colors = [
-                { border: 'border-sky-500/40', bg: 'bg-sky-500/10', circle: 'border-sky-500/60', num: 'text-sky-300', label: 'text-sky-400/80', title: 'text-sky-300', badge: 'border-sky-500/30 text-sky-300/80 bg-sky-500/10' },
-                { border: 'border-amber-400/50', bg: 'bg-amber-400/10', circle: 'border-amber-400/70', num: 'text-amber-400', label: 'text-amber-400/80', title: 'text-amber-400', badge: 'border-amber-400/30 text-amber-400/80 bg-amber-400/10' },
-                { border: 'border-amber-400/50', bg: 'bg-amber-400/10', circle: 'border-amber-400/70', num: 'text-amber-400', label: 'text-amber-400/80', title: 'text-amber-400', badge: 'border-amber-400/30 text-amber-400/80 bg-amber-400/10' },
-                { border: 'border-emerald-500/40', bg: 'bg-emerald-500/10', circle: 'border-emerald-500/60', num: 'text-emerald-400', label: 'text-emerald-400/80', title: 'text-emerald-400', badge: 'border-emerald-500/30 text-emerald-400/80 bg-emerald-500/10' },
-              ];
-              const c = colors[i];
-              return (
-              <div key={i} className={`border rounded-lg p-5 ${c.border} ${c.bg}`}>
-                <div className="flex items-center gap-3 mb-3">
-                  <div className={`w-9 h-9 flex items-center justify-center rounded-full border-2 bg-black ${c.circle}`}>
-                    <span className={`text-sm font-bold ${c.num}`}>{i + 1}</span>
+                  <h3 className={`text-base font-bold mb-3 ${c.title}`}>
+                    {week.phase}
+                  </h3>
+                  <ul className="space-y-2 mb-4">
+                    {week.activities.map((act, j) => (
+                      <li key={j} className="flex items-start gap-2.5 text-white/70 text-sm font-light">
+                        <i className="ri-arrow-right-s-line text-white/40 text-sm shrink-0 mt-0.5"></i>
+                        <span>{act}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-medium ${c.badge}`}>
+                    <i className="ri-flag-line text-xs"></i>
+                    <span>{week.outcome}</span>
                   </div>
-                  <span className={`text-xs tracking-widest uppercase font-semibold ${c.label}`}>
-                    {week.week}
-                  </span>
                 </div>
-                <h3 className={`text-base font-bold mb-3 ${c.title}`}>
-                  {week.phase}
-                </h3>
-                <ul className="space-y-2 mb-4">
-                  {week.activities.map((act, j) => (
-                    <li key={j} className="flex items-start gap-2.5 text-white/70 text-sm font-light">
-                      <i className="ri-arrow-right-s-line text-white/40 text-sm shrink-0 mt-0.5"></i>
-                      <span>{act}</span>
-                    </li>
-                  ))}
-                </ul>
-                <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full border text-xs font-medium ${c.badge}`}>
-                  <i className="ri-flag-line text-xs"></i>
-                  <span>{week.outcome}</span>
-                </div>
-              </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
         </div>
 
         {/* Promise Box */}

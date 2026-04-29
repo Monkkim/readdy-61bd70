@@ -176,7 +176,7 @@ export default function Services() {
             onClick={() => handleScroll('#contact')}
             className="inline-flex items-center gap-3 border border-black text-black px-8 py-4 text-xs tracking-widest uppercase font-semibold hover:bg-black hover:text-white transition-all duration-300 cursor-pointer whitespace-nowrap group rounded-full"
           >
-            <span>컨설팅 진단 받기</span>
+            <span>4주 코칭이 맞는지 진단받기</span>
             <i className="ri-arrow-right-line text-base group-hover:translate-x-1 transition-transform"></i>
           </button>
         </div>

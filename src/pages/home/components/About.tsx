@@ -59,13 +59,12 @@ export default function About() {
                 src="https://ccqmnekxfekgszvryfjh.supabase.co/storage/v1/object/public/MY/picture.png"
                 alt="투쏠"
                 className="w-full h-full object-cover object-top"
+                loading="lazy"
+                decoding="async"
               />
             </div>
 
             <div className="space-y-5 text-white/60 text-sm leading-relaxed font-light mb-10">
-              <p>
-                안녕하세요 여러분 <strong className="text-white font-semibold">투쏠</strong>입니다.
-              </p>
               <p>
                 저는 AI가 본격적으로 세상을 뒤흔들기 시작한 이후, 이 미지의 도구가 우리의 일과 삶을 어떻게 혁신적으로 바꿀 수 있는지 그 실전적인 해답을 찾아가고 있습니다.
               </p>
@@ -120,6 +119,8 @@ AI 기초 강의부터 같이 만들기, 사업에 이식, 직접 운영까지 4
                 src="https://ccqmnekxfekgszvryfjh.supabase.co/storage/v1/object/public/MY/picture.png"
                 alt="투쏠"
                 className="w-full h-full object-cover object-top"
+                loading="lazy"
+                decoding="async"
               />
             </div>
           </div>

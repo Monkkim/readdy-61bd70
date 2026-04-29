@@ -163,7 +163,7 @@ export default function FAQ() {
               onClick={(e) => { e.preventDefault(); document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }); }}
               className="inline-flex items-center gap-3 border border-black text-black px-6 py-3 text-xs tracking-widest uppercase font-semibold hover:bg-black hover:text-white transition-all cursor-pointer whitespace-nowrap group mx-auto md:mx-0 rounded-full"
             >
-              <span>직접 문의하기</span>
+              <span>궁금증 해결됐다면, 30분 진단 신청</span>
               <i className="ri-arrow-right-line text-sm group-hover:translate-x-1 transition-transform"></i>
             </a>
           </div>

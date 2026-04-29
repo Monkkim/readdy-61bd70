@@ -124,11 +124,11 @@ export default function Empathy() {
           </p>
           <div className="mt-8 md:mt-10">
             <button
-              onClick={() => handleScroll('#coaching')}
+              onClick={() => handleScroll('#contact')}
               className="inline-flex items-center gap-3 bg-white text-black px-8 md:px-10 py-4 text-xs tracking-widest uppercase font-semibold hover:bg-amber-400 transition-all cursor-pointer whitespace-nowrap group rounded-full"
             >
-              <span>제4의 길 보기</span>
-              <i className="ri-arrow-down-line text-base group-hover:translate-y-1 transition-transform"></i>
+              <span>내 사업에 맞는지 30분 진단</span>
+              <i className="ri-arrow-right-line text-base group-hover:translate-x-1 transition-transform"></i>
             </button>
           </div>
         </div>

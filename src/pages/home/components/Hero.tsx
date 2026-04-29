@@ -84,6 +84,8 @@ export default function Hero() {
         alt="AI Background"
         className="absolute inset-0 w-full h-full object-cover object-top opacity-40"
         style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+        fetchPriority="high"
+        decoding="async"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/90"></div>
       <ECGLine />
@@ -98,18 +100,14 @@ export default function Hero() {
                 AI Automation Coaching
               </p>
               <h1 className="text-[1.7rem] sm:text-[2.2rem] md:text-[2.8rem] lg:text-[3.2rem] font-bold text-white leading-tight mb-5 tracking-tight">
-                AI 에이전트 1개,<br />
-                4주 동안 같이 만들어<br />
-                <span className="text-amber-400">여러분의 사업에 이식합니다</span>
+                내 사업 안에서<br />
+                <span className="text-amber-400">진짜 작동하는 AI 에이전트</span> 1개,<br />
+                4주 만에 만들기
               </h1>
 
               <p className="text-sm md:text-base text-white/60 mb-8 max-w-lg leading-relaxed font-light mx-auto lg:mx-0">
-                비개발자 대표를 위한 <span className="text-white/90 font-medium">1:1 코칭</span><br className="hidden sm:block" />
-                받기만 하지 않고, 흘려보내지도 않습니다 — 같이 만들고 직접 운영합니다
-              </p>
-
-              <p className="text-xs text-white/40 font-light mb-8">
-                외주 1회 비용 수준 · 30분 무료 진단으로 적합성 확인 가능
+                비개발자 대표를 위한 <span className="text-white/90 font-medium">1:1 페어빌드 코칭</span>.<br />
+                외주 1회 비용으로, 4주 후엔 직접 운영까지.
               </p>
 
               {/* Dual CTA */}

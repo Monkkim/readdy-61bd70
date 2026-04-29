@@ -122,6 +122,7 @@ export default function Testimonials() {
           className="flex gap-5 w-max px-4"
           style={{
             animation: 'marqueeLeft 40s linear infinite',
+            willChange: 'transform',
           }}
           onMouseEnter={() => { if (track1Ref.current) track1Ref.current.style.animationPlayState = 'paused'; }}
           onMouseLeave={() => { if (track1Ref.current) track1Ref.current.style.animationPlayState = 'running'; }}
@@ -141,6 +142,7 @@ export default function Testimonials() {
           className="flex gap-5 w-max px-4"
           style={{
             animation: 'marqueeRight 40s linear infinite',
+            willChange: 'transform',
           }}
           onMouseEnter={() => { if (track2Ref.current) track2Ref.current.style.animationPlayState = 'paused'; }}
           onMouseLeave={() => { if (track2Ref.current) track2Ref.current.style.animationPlayState = 'running'; }}

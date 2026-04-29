@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 
 const cases = [
   {
@@ -47,17 +47,49 @@ interface CaseRowProps {
 
 function CaseRow({ c, index, rowRef }: CaseRowProps) {
   const isVideoLeft = index % 2 === 0;
+  const videoRef = useRef<HTMLDivElement>(null);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setShouldLoad(true);
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '200px' }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const video = (
-    <div className="w-full md:w-1/2 shrink-0 order-2 md:order-none">
+    <div ref={videoRef} className="w-full md:w-1/2 shrink-0 order-2 md:order-none">
       <div className="relative rounded-lg overflow-hidden" style={{ paddingBottom: '64.47%' }}>
-        <iframe
-          src={c.loomUrl}
-          frameBorder="0"
-          allowFullScreen
-          className="absolute top-0 left-0 w-full h-full"
-          title={`${c.client} 후기 영상`}
-        ></iframe>
+        {shouldLoad ? (
+          <iframe
+            src={c.loomUrl}
+            frameBorder="0"
+            allowFullScreen
+            className="absolute top-0 left-0 w-full h-full"
+            title={`${c.client} 후기 영상`}
+            loading="lazy"
+          ></iframe>
+        ) : (
+          <div className="absolute inset-0 bg-gray-900 flex items-center justify-center">
+            <div className="flex flex-col items-center gap-3">
+              <div className="w-12 h-12 flex items-center justify-center border border-white/20 rounded-full">
+                <i className="ri-play-circle-line text-2xl text-white/40"></i>
+              </div>
+              <span className="text-xs text-white/30 font-light">영상 로딩 중...</span>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -188,6 +220,20 @@ export default function CoachingCases() {
               rowRef={(el) => { rowRefs.current[i] = el; }}
             />
           ))}
+        </div>
+
+        {/* CTA */}
+        <div className="mt-16 md:mt-20 flex justify-center">
+          <button
+            onClick={() => {
+              const el = document.querySelector('#contact');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            className="inline-flex items-center gap-3 bg-white text-black px-8 md:px-10 py-4 text-xs tracking-widest uppercase font-semibold hover:bg-amber-400 transition-all duration-300 cursor-pointer whitespace-nowrap group rounded-full"
+          >
+            <span>어떤 자동화부터 시작할지 진단</span>
+            <i className="ri-arrow-right-line text-base group-hover:translate-x-1 transition-transform"></i>
+          </button>
         </div>
 
       </div>

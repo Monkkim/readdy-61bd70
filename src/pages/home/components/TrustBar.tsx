@@ -1,10 +1,9 @@
 import { useRef, useEffect } from 'react';
 
 const trustItems = [
-  { icon: 'ri-youtube-line', text: '유튜브 10,000+' },
-  { icon: 'ri-stack-line', text: '자동화 프로젝트 50+' },
-  { icon: 'ri-customer-service-2-line', text: '채널톡 Experts' },
-  { icon: 'ri-graduation-cap-line', text: '패스트캠퍼스 강사' },
+  { icon: 'ri-instagram-line', text: 'SNS 도합 2.5만 팔로워' },
+  { icon: 'ri-stack-line', text: '자동화 프로젝트 15+' },
+  { icon: 'ri-graduation-cap-line', text: '패스트캠퍼스 강의 런칭' },
   { icon: 'ri-group-line', text: 'ABC 커뮤니티 2,000+' },
 ];
 

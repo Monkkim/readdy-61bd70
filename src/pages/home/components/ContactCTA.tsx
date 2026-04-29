@@ -87,18 +87,28 @@ export default function ContactCTA() {
     setStatus('sending');
 
     try {
-      const res = await fetch('https://primary-production-c55d.up.railway.app/webhook-test/e6186e59-d278-48d5-8859-20300edaf129', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: formData.name,
-          contact: formData.contact,
-          email: formData.email,
-          type: typeOptions.find((s) => s.value === formData.type)?.label ?? formData.type,
-          message: formData.message,
+      const payload = {
+        name: formData.name,
+        contact: formData.contact,
+        email: formData.email,
+        type: typeOptions.find((s) => s.value === formData.type)?.label ?? formData.type,
+        message: formData.message,
+      };
+
+      const responses = await Promise.all([
+        fetch('https://primary-production-c55d.up.railway.app/webhook-test/e6186e59-d278-48d5-8859-20300edaf129', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
         }),
-      });
-      if (res.ok) {
+        fetch('https://primary-production-c55d.up.railway.app/webhook/e6186e59-d278-48d5-8859-20300edaf129', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        }),
+      ]);
+
+      if (responses.some((res) => res.ok)) {
         setStatus('success');
         setFormData({ name: '', contact: '', email: '', type: '', message: '' });
         setCharCount(0);
@@ -187,7 +197,7 @@ export default function ContactCTA() {
                 <AnimatedItem delay={0}>
                   <div className="grid grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-xs tracking-widest uppercase text-white/70 mb-2 font-medium">이름</label>
+                      <label className="block text-xs tracking-widest uppercase text-white mb-2 font-medium">이름</label>
                       <input
                         type="text"
                         name="name"
@@ -199,7 +209,7 @@ export default function ContactCTA() {
                       />
                     </div>
                     <div>
-                      <label className="block text-xs tracking-widest uppercase text-white/70 mb-2 font-medium">연락처</label>
+                      <label className="block text-xs tracking-widest uppercase text-white mb-2 font-medium">연락처</label>
                       <input
                         type="tel"
                         name="contact"
@@ -215,7 +225,7 @@ export default function ContactCTA() {
 
                 <AnimatedItem delay={80}>
                   <div>
-                    <label className="block text-xs tracking-widest uppercase text-white/70 mb-2 font-medium">이메일</label>
+                    <label className="block text-xs tracking-widest uppercase text-white mb-2 font-medium">이메일</label>
                     <input
                       type="email"
                       name="email"
@@ -231,7 +241,7 @@ export default function ContactCTA() {
                 {/* Type Selection - 버튼 카드 방식 */}
                 <AnimatedItem delay={160}>
                   <div>
-                    <label className="block text-xs tracking-widest uppercase text-amber-400/80 mb-3 font-medium">
+                    <label className="block text-xs tracking-widest uppercase text-white mb-3 font-medium">
                       원하는 진행 방식 <span className="text-amber-400">*</span>
                     </label>
                     <div className="flex flex-col gap-2">
@@ -266,7 +276,7 @@ export default function ContactCTA() {
 
                 <AnimatedItem delay={240}>
                   <div>
-                    <label className="block text-xs tracking-widest uppercase text-white/70 mb-2 font-medium">
+                    <label className="block text-xs tracking-widest uppercase text-white mb-2 font-medium">
                       프로젝트에 대해 간단히 설명해주세요!
                     </label>
                     <textarea
