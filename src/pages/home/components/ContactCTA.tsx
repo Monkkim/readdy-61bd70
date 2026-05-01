@@ -75,7 +75,7 @@ export default function ContactCTA() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     if (name === 'message') {
-      if (value.length > 200) return;
+      if (value.length > 500) return;
       setCharCount(value.length);
     }
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -83,32 +83,24 @@ export default function ContactCTA() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (charCount > 200) return;
+    if (charCount > 500) return;
     setStatus('sending');
 
     try {
-      const payload = {
-        name: formData.name,
-        contact: formData.contact,
-        email: formData.email,
-        type: typeOptions.find((s) => s.value === formData.type)?.label ?? formData.type,
-        message: formData.message,
-      };
+      const params = new URLSearchParams();
+      params.append('name', formData.name);
+      params.append('contact', formData.contact);
+      params.append('email', formData.email);
+      params.append('type', typeOptions.find((s) => s.value === formData.type)?.label ?? formData.type);
+      params.append('message', formData.message);
 
-      const responses = await Promise.all([
-        fetch('https://primary-production-c55d.up.railway.app/webhook-test/e6186e59-d278-48d5-8859-20300edaf129', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        }),
-        fetch('https://primary-production-c55d.up.railway.app/webhook/e6186e59-d278-48d5-8859-20300edaf129', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-        }),
-      ]);
+      const res = await fetch('https://readdy.ai/api/form/d7q2db6l0bai2p3ha820', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString(),
+      });
 
-      if (responses.some((res) => res.ok)) {
+      if (res.ok) {
         setStatus('success');
         setFormData({ name: '', contact: '', email: '', type: '', message: '' });
         setCharCount(0);
@@ -175,13 +167,22 @@ export default function ContactCTA() {
           <div ref={rightRef}>
             {status === 'success' ? (
               <AnimatedItem>
-                <div className="border border-white/10 p-12 text-center rounded-lg">
+                <div className="border border-white/10 p-10 md:p-12 text-center rounded-lg">
                   <i className="ri-check-line text-4xl text-amber-400 mb-4 block"></i>
-                  <p className="text-white font-semibold mb-2">진단 요청이 전송되었습니다</p>
-                  <p className="text-white/50 text-sm font-light">24시간 내에 답변드리겠습니다</p>
+                  <p className="text-white font-semibold mb-2">감사합니다</p>
+                  <p className="text-white/70 text-sm font-light mb-1">빠른 시일내에 연락드리겠습니다</p>
+                  <p className="text-white/50 text-sm font-light mb-8">원활한 소통을 위해 아래 카카오톡 방에 들어와 성함을 남겨주세요!</p>
+                  <a
+                    href="https://open.kakao.com/o/sdIuAY6h"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-amber-400 text-black px-8 py-3 text-sm font-semibold hover:bg-amber-500 transition-colors cursor-pointer rounded-full whitespace-nowrap"
+                  >
+                    카카오톡 방 들어가기
+                  </a>
                   <button
                     onClick={() => setStatus('idle')}
-                    className="mt-8 text-xs tracking-widest uppercase text-white/40 hover:text-white transition-colors cursor-pointer"
+                    className="block mt-8 mx-auto text-xs tracking-widest uppercase text-white/40 hover:text-white transition-colors cursor-pointer"
                   >
                     다시 보내기
                   </button>
@@ -191,6 +192,8 @@ export default function ContactCTA() {
               <form
                 data-readdy-form
                 id="contact-form-v3"
+                action="https://readdy.ai/api/form/d7q2db6l0bai2p3ha820"
+                method="POST"
                 onSubmit={handleSubmit}
                 className="space-y-6"
               >
@@ -285,11 +288,12 @@ export default function ContactCTA() {
                       onChange={handleChange}
                       required
                       rows={4}
+                      maxLength={500}
                       placeholder="예) 마케팅 대행사 운영 중. 리드 들어오면 자동 자료 발송 + 상담까지 이어지는 워크플로우를 만들고 싶습니다"
                       className="w-full bg-transparent border-b border-white/50 py-3 text-white text-sm placeholder-white/40 focus:outline-none focus:border-white transition-colors resize-none font-light"
                     />
-                    <div className={`text-right text-xs mt-1 font-light ${charCount > 200 ? 'text-red-400' : 'text-white/50'}`}>
-                      {charCount}/200
+                    <div className={`text-right text-xs mt-1 font-light ${charCount > 500 ? 'text-red-400' : 'text-white/50'}`}>
+                      {charCount}/500
                     </div>
                   </div>
                 </AnimatedItem>
@@ -301,7 +305,7 @@ export default function ContactCTA() {
 
                   <button
                     type="submit"
-                    disabled={status === 'sending' || charCount > 200}
+                    disabled={status === 'sending' || charCount > 500}
                     className="w-full bg-white text-black py-4 text-xs tracking-widest uppercase font-semibold hover:bg-amber-400 transition-all duration-300 cursor-pointer disabled:opacity-50 whitespace-nowrap group flex items-center justify-center gap-3 rounded-full"
                   >
                     <span>{status === 'sending' ? '전송 중...' : '30분 무료 진단 신청하기'}</span>
